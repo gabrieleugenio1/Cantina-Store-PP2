@@ -30,7 +30,10 @@ public class CardapioController {
 		return "pagamento";
 	}
 
-
+	@RequestMapping("/cadastro")
+	public String cadastro() {
+		return "cadastro";
+	}
 
 
 }
