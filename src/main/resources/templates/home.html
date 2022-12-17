@@ -8,12 +8,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/css/style.css" />
   </head>
 
   <body>
-  <header th:replace="partials/header :: navbar"></header>
+  <header th:replace="/partials/header :: navbar"></header>
   
     <main class="container">
           <div class="container" style="display:flex; justify-content:center">
@@ -392,7 +392,7 @@
         </form>
       </div>
     </main>
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/scripts.js"></script>
+    <script src="/src/main/resources/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/main/resources/static/js/scripts.js"></script>
   </body>
 </html>
