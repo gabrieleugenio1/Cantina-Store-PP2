@@ -1,11 +1,14 @@
 package br.ifpe.pp2;
  
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.ifpe.pp2.models.usuarios.UsuariosDAO;
+
 @Controller
 public class CardapioController {
-
+	
 	
 	
 	@RequestMapping("/")
@@ -26,5 +29,8 @@ public class CardapioController {
 	public String pagamento() {
 		return "pagamento";
 	}
+
+
+
 
 }

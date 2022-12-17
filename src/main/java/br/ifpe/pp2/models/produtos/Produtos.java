@@ -1,6 +1,6 @@
-package br.ifpe.models.produtos;
+package br.ifpe.pp2.models.produtos;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

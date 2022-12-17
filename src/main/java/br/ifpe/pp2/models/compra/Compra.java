@@ -1,12 +1,12 @@
-package br.ifpe.models.compra;
+package br.ifpe.pp2.models.compra;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id; 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import br.ifpe.models.produtos.ProdutosPedido;
+import br.ifpe.pp2.models.produtos.ProdutosPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

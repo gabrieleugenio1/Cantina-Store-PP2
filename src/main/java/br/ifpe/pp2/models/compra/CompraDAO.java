@@ -1,4 +1,4 @@
-package br.ifpe.models.compra;
+package br.ifpe.pp2.models.compra;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
