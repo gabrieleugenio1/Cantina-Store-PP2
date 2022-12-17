@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <header th:replace="/partials/header :: headBlock"></header>
+    <title>Tela de Login</title>
+</head>
+
+<body>
+    <header th:replace="/partials/header :: navbar"></header>
+    <div class="div-center">
+        <form action="">
+            <div class="container">
+                <h1>Login</h1>
+  
+                <div class="break"></div>
+                <div>
+                    <label for="" class="form-label">Email</label>
+                    <input type="email" class="form-control">
+                </div>              
+                <div class="break"></div>
+                <div class="">
+                    <label for="" class="form-label">Senha</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="break"></div>
+                <div class="text-center"><input type="submit" class="btn btn-success" value="Entrar"/></div>
+            </div>
+        </form>
+    </div>
+    <script src="./js/scripts.js"></script>
+    <footer th:replace="/partials/footer :: footer"></footer>
+</body>
+
+</html>

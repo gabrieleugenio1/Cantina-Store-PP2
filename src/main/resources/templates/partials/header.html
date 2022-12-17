@@ -14,37 +14,72 @@
 
 <body>
   <th:block th:fragment="navbar">
-    <header class="container-left">
-      <div class="fixed-top">
-        <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
-          <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft"
-              aria-controls="offcanvasLeft">MENU</button>
-            <a class="nav-link text-dark" href="/">Cardápio</a>
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel"
-              style="width: 300px">
-              <div class="offcanvas-header">
-                <a class="nav-link" href="/">
-                  <h1>Cantina</h1>
-                </a>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                <ul class="navbar-nav me-auto mb-2">
-                  <li class="nav-item">
-                    <a class="nav-link text-dark" href="/meuspedidos"><i class="bi bi-table"> Meus Pedidos</i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-dark" href="/minhaconta"><i class="bi bi-person-circle"> Minha Conta</i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-dark" href="/cadastro"><i class="bi bi-person-circle"> Criar Conta</i></a>
-                  </li>
-                </ul>
+
+ <header class="container-left">
+        <div class="fixed-top">
+          <nav
+            class="navbar navbar-dark bg-dark"
+            aria-label="First navbar example"
+          >
+            <div class="container-fluid">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasLeft"
+                aria-controls="offcanvasLeft"
+              >MENU</button>
+              <a class="nav-link text-dark" href="/">Cardápio</a>
+
+              <div
+                class="offcanvas offcanvas-start"
+                tabindex="-1"
+                id="offcanvasLeft"
+                aria-labelledby="offcanvasLeftLabel"
+                style="width: 300px"
+              >
+                <div class="offcanvas-header">
+                  <a class="nav-link" href="/">
+                    <h1>Cantina</h1>
+                  </a>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav me-auto mb-2">
+                    <li class="nav-item">
+                      <a
+                        class="nav-link text-dark"
+                        href="/meuspedidos"
+                        ><i class="bi bi-table">Meus Pedidos</i></a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-dark" href="/minhaconta"
+                        ><i class="bi bi-person-circle">Minha Conta</i></a
+                      >
+                    </li>
+                     <li class="nav-item">
+                      <a class="nav-link text-dark" href="/cadastro"
+                        ><i class="bi bi-person-circle">Criar Conta</i></a
+                      >
+                    </li>
+                     <li class="nav-item">
+                      <a class="nav-link text-dark" href="/login"
+                        ><i class="bi bi-person-circle">Login</i></a
+                      >
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </nav>
+
       </div>
     </header>
     <script src="./js/bootstrap.bundle.min.js"></script>
