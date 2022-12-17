@@ -74,6 +74,11 @@ body {
 .navbar-toggler:hover {
     background-color: gray;
 }
+.div-center{
+    display: grid;
+    grid-template-columns: auto;
+    font: bold 18px Arial;
+}
 
 .div-produto {
     display: grid;

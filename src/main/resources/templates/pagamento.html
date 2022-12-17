@@ -12,12 +12,15 @@
 </head>
 
 <body>
-    <form action="">
-        <div class="container">
-            <h1 id="entrega" name="entrega">Entrega</h1>
-            <h1 id="retirada" name="retirada">Retirada</h1>
-        </div>
-    </form>
+    <header th:replace="/partials/header :: navbar"></header>
+    <main class="container">
+        <form action="">
+            <div class="container">
+                <h1 id="entrega" name="entrega">Entrega</h1>
+                <h1 id="retirada" name="retirada">Retirada</h1>
+            </div>
+        </form>
+    </main>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/scripts.js"></script>
 </body>
