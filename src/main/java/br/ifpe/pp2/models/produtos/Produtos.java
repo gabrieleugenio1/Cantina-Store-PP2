@@ -1,7 +1,7 @@
 package br.ifpe.pp2.models.produtos;
 
 import jakarta.persistence.Id;
-
+import br.ifpe.pp2.models.produtospedido.ProdutosPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Produtos {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private Integer id_produto;
+	private Long id_produto;
 	private String nome;
 	private String descricao;
 	private Integer estoque;
@@ -21,10 +21,10 @@ public class Produtos {
 	@ManyToOne
 	private ProdutosPedido carrinho;
 	
-	public Integer getId_produto() {
+	public Long getId_produto() {
 		return id_produto;
 	}
-	public void setId_produto(Integer id_produto) {
+	public void setId_produto(Long id_produto) {
 		this.id_produto = id_produto;
 	}
 	public String getNome() {
