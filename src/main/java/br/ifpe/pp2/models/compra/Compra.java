@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import br.ifpe.pp2.models.produtos.ProdutosPedido;
+import br.ifpe.pp2.models.produtospedido.ProdutosPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +16,7 @@ import jakarta.persistence.OneToOne;
 public class Compra {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private Integer id_produto;
+	private Long id_produto;
 	private Float preco;
 	private String observacao;
 	@DateTimeFormat(iso = ISO.DATE)
@@ -26,10 +26,10 @@ public class Compra {
 	@OneToOne
 	private ProdutosPedido pedido;
 	
-	public Integer getId_produto() {
+	public Long getId_produto() {
 		return id_produto;
 	}
-	public void setId_produto(Integer id_produto) {
+	public void setId_produto(Long id_produto) {
 		this.id_produto = id_produto;
 	}
 	public Float getPreco() {

@@ -1,4 +1,4 @@
-package br.ifpe.pp2.models.produtos;
+package br.ifpe.pp2.models.produtospedido;
 
 
 import jakarta.persistence.Id;
@@ -11,15 +11,15 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class ProdutosPedido {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private Integer id_compra;
+	private Long id_compra;
 	private Integer quantidade;
     @OneToOne
     private Usuarios usuario;
     
-	public Integer getId_compra() {
+	public Long getId_compra() {
 		return id_compra;
 	}
-	public void setId_compra(Integer id_compra) {
+	public void setId_compra(Long id_compra) {
 		this.id_compra = id_compra;
 	}
 	public Integer getQuantidade() {
