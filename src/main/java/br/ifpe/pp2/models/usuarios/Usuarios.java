@@ -2,6 +2,7 @@ package br.ifpe.pp2.models.usuarios;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -16,23 +17,26 @@ import jakarta.persistence.Lob;
 public class Usuarios {
 	
 	 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long  id_usuario;
+	private Long  id;
 	private String nome;
 	private String email;
 	private String senha; 
 	private String telefone;
-	 @Column(columnDefinition = "smallint default 0")
-	private Tipo tipo;
+	 @Column(nullable = false)
+	private Boolean tipo = false;
 	@Lob
 	private byte[] foto;
+	
+	@Column(nullable = false, updatable = false)
+	@CreationTimestamp
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate criacaoConta;
 	
-	public Long  getId_usuario() {
-		return id_usuario;
+	public Long  getId() {
+		return id;
 	}
-	public void setId_usuario(Long  id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setId(Long  id_usuario) {
+		this.id = id_usuario;
 	}
 	public String getNome() {
 		return nome;
@@ -58,12 +62,7 @@ public class Usuarios {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public Tipo getTipo() {
-		return tipo;
-	}
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
+
 	public byte[] getFoto() {
 		return foto;
 	}
@@ -75,5 +74,11 @@ public class Usuarios {
 	}
 	public void setCriacaoConta(LocalDate criacaoConta) {
 		this.criacaoConta = criacaoConta;
+	}
+	public Boolean getTipo() {
+		return tipo;
+	}
+	public void setTipo(Boolean tipo) {
+		this.tipo = tipo;
 	}
 }

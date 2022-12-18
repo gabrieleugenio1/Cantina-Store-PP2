@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <header th:replace="/partials/header :: headBlock"></header>
+    <title>Minha conta</title>
+</head>
+
+<body>
+	<header th:replace="partials/header :: navbar"></header>
+    <main class="container">
+      
+        <section>
+            <div>
+                <div class="container">
+                    <h4>Editar dados da conta</h4>
+                </div>
+                <div>
+                    <div class="div-edicao">
+                        <div>
+                            <span class="fw-bold">Nome: </span><span>Nome</span>
+                        </div>
+                        <div data-bs-toggle="modal" data-bs-target="#editarNome"><button type="button"
+                                class="botao">Editar</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="div-edicao">
+                        <div>
+                            <span class="fw-bold">Email: </span><span>Email</span>
+                        </div>
+                        <div data-bs-toggle="modal" data-bs-target="#editarEmail"><button type="button"
+                                class="botao">Editar</button></div>
+                    </div>
+                    <br>
+                    <div class="div-edicao">
+                        <div>
+                            <span class="fw-bold">Número: </span><span>Número</span>
+                        </div>
+                        <div data-bs-toggle="modal" data-bs-target="#editarNumero"><button type="button"
+                                class="botao">Editar</button></div>
+                    </div>
+                    <br>
+                    <div class="div-edicao">
+                        <div>
+                            <span class="fw-bold">Senha: </span><span>Senha</span>
+                        </div>
+                        <div data-bs-toggle="modal" data-bs-target="#editarSenha"><button type="button"
+                                class="botao">Editar</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+
+        <!-- Modal Nome -->
+        <div class="modal fade" id="editarNome" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Altere o seu nome</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <form class="row">
+                            <div>
+                                Fazer alteração do nome associado à sua conta.
+                            </div>
+                            <div class="break"></div>
+                            <div>
+                                <input type="text" class="form-control" id=""
+                                    placeholder="Nome">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Salvar alteração</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Email-->
+        <div class="modal fade" id="editarEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Altere o seu email</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <form class="row">
+                            <div>
+                                Digite o novo endereço de email que você deseja associar à sua conta. Enviaremos um código de verificação para esse endereço.
+                            </div>
+                            <div class="break"></div>
+                            <div>
+                                <input type="email" class="form-control" id=""
+                                    placeholder="Novo endereço de email">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#codigoEmail">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Codigo Email-->
+        <div class="modal fade" id="codigoEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Altere o seu email</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <form class="row">
+                            <div>
+                                Digite o código recebido
+                            </div>
+                            <div class="break"></div>
+                            <div>
+                                <input type="email" class="form-control" id=""
+                                    placeholder="Código de verificação">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Salvar alteração</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Número-->
+        <div class="modal fade" id="editarNumero" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar o número do celular</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <form class="row">
+                            <div>
+                                <select class="form-select form-select-sm" name="" id="">
+                                    <option value="">DDD</option>
+                                </select>
+                            </div>
+                            <div class="break"></div>
+                            <div>
+                                <input type="text" class="form-control" id=""
+                                    placeholder="Número de celular">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Salvar Alterações</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Senha-->
+        <div class="modal fade" id="editarSenha" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Fazer Alteração da senha</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <form class="row">
+                            <div>
+                                <div>
+                                    <input type="password" class="form-control" id=""
+                                        placeholder="Senha atual">
+                                </div>
+                                <div class="break"></div>
+                                <div>
+                                    <input type="password" class="form-control" id=""
+                                        placeholder="Senha nova">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Salvar Alterações</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+     <footer th:replace="/partials/footer :: footer"></footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/scripts.js"></script>
+</body>
+
+</html>

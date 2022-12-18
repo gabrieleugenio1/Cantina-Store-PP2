@@ -8,35 +8,28 @@
 
 <body>
     <header th:replace="/partials/header :: navbar"></header>
-  
     <div class="div-center">
-		 <div th:if="${sucess}" style="position: absolute;top: 59px;z-index: 1;
-">
-    			<div class="alert alert-success" role="alert">
-  					<p th:utext="${sucess}"></p>
-				</div>
-			</div>
-        <form th:action="@{/salvar/novousuario}" th:object="${usuarios}"  method="post">
+        <form action="">
             <div class="container">
                 <h1>Realizar Cadastro</h1>
                 <div class="col-md">
                     <label for="" class="form-label">Nome</label>
-                    <input type="text" th:field="*{nome}"  class="form-control" required>
+                    <input type="text" class="form-control">
                 </div>
                 <div class="break"></div>
                 <div>
                     <label for="" class="form-label">Email</label>
-                    <input type="email" th:field="*{email}" class="form-control" required>
+                    <input type="email" class="form-control">
                 </div>
                 <div class="break"></div>
                 <div>
                     <label for="" class="form-label">Celular</label>
-                    <input type="tel" th:field="*{telefone}" class="form-control" minlength="11" maxlength="11" required>
+                    <input type="text" class="form-control">
                 </div>
                 <div class="break"></div>
                 <div class="">
                     <label for="" class="form-label">Senha</label>
-                    <input type="password" th:field="*{senha}" class="form-control" required>
+                    <input type="text" class="form-control">
                 </div>
                 <div class="break"></div>
                 <div class="text-center"><button type="submit" class="btn btn-success">Cadastrar</button></div>
