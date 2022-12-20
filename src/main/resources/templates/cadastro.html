@@ -16,6 +16,12 @@
   					<p th:utext="${sucess}"></p>
 				</div>
 			</div>
+			<div th:if="${falha}" style="position: absolute;top: 59px;z-index: 1;
+">
+    			<div class="alert alert-danger" role="alert">
+  					<p th:utext="${falha}"></p>
+				</div>
+			</div>
         <form th:action="@{/salvar/novousuario}" th:object="${usuarios}"  method="post">
             <div class="container">
                 <h1>Realizar Cadastro</h1>
@@ -26,7 +32,7 @@
                 <div class="break"></div>
                 <div>
                     <label for="" class="form-label">Email</label>
-                    <input type="email" th:field="*{email}" class="form-control" required>
+                    <input type="email" th:field="*{email}" name="email" class="form-control" required>
                 </div>
                 <div class="break"></div>
                 <div>

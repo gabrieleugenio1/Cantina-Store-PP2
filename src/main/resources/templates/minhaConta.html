@@ -9,7 +9,12 @@
 <body>
 	<header th:replace="partials/header :: navbar"></header>
     <main class="container">
-      
+      	 <div th:if="${sucess}" style="position: absolute;top: 59px;z-index: 1;
+">
+    			<div class="alert alert-success" role="alert">
+  					<p th:utext="${sucess}"></p>
+				</div>
+			</div>
         <section>
             <div>
                 <div class="container">
@@ -18,7 +23,7 @@
                 <div>
                     <div class="div-edicao">
                         <div>
-                            <span class="fw-bold">Nome: </span><span>Nome</span>
+                            <span class="fw-bold">Nome: </span><span th:utext="${session.usuarioLogado.getNome()}"></span>
                         </div>
                         <div data-bs-toggle="modal" data-bs-target="#editarNome"><button type="button"
                                 class="botao">Editar</button>
@@ -27,7 +32,7 @@
                     <br>
                     <div class="div-edicao">
                         <div>
-                            <span class="fw-bold">Email: </span><span>Email</span>
+                            <span class="fw-bold">Email: </span><span th:utext="${session.usuarioLogado.getEmail()}">Email</span>
                         </div>
                         <div data-bs-toggle="modal" data-bs-target="#editarEmail"><button type="button"
                                 class="botao">Editar</button></div>
@@ -35,7 +40,7 @@
                     <br>
                     <div class="div-edicao">
                         <div>
-                            <span class="fw-bold">Número: </span><span>Número</span>
+                            <span class="fw-bold">Número: </span><span th:utext="${session.usuarioLogado.getTelefone()}">Número</span>
                         </div>
                         <div data-bs-toggle="modal" data-bs-target="#editarNumero"><button type="button"
                                 class="botao">Editar</button></div>
@@ -43,16 +48,25 @@
                     <br>
                     <div class="div-edicao">
                         <div>
-                            <span class="fw-bold">Senha: </span><span>Senha</span>
+                            <span class="fw-bold">Senha: </span>
                         </div>
                         <div data-bs-toggle="modal" data-bs-target="#editarSenha"><button type="button"
                                 class="botao">Editar</button></div>
+                    </div>
+                    <div class="div-edicao">
+                        <div>
+                            <span class="fw-bold">Senha: </span>
+                            <form th:action="@{/removerConta}" th:object="${usuarios}" method="post">
+                            <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
+                            <input type="submit" onclick="confirm('Você realmente deseja apagar sua conta?')" value="Apagar conta"/>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </section>
        
-
         <!-- Modal Nome -->
         <div class="modal fade" id="editarNome" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
@@ -62,19 +76,21 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body ">
-                        <form class="row">
+                        <form class="row"  action="/alterardados" method="post">
+                            <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
+                       
                             <div>
                                 Fazer alteração do nome associado à sua conta.
                             </div>
                             <div class="break"></div>
                             <div>
                                 <input type="text" class="form-control" id=""
-                                    placeholder="Nome">
+                                   name="nome" placeholder="Nome">
                             </div>
+                        <button type="submit" class="btn btn-primary">Salvar alteração</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Salvar alteração</button>
                     </div>
                 </div>
             </div>
@@ -88,49 +104,26 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body ">
-                        <form class="row">
+                        <form class="row" action="/alterardados"  method="post">
+                                    <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
+                        
                             <div>
                                 Digite o novo endereço de email que você deseja associar à sua conta. Enviaremos um código de verificação para esse endereço.
                             </div>
                             <div class="break"></div>
                             <div>
-                                <input type="email" class="form-control" id=""
+                                <input type="email" class="form-control" id="" name="email"
                                     placeholder="Novo endereço de email">
                             </div>
+                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#codigoEmail">Continuar</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#codigoEmail">Continuar</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal Codigo Email-->
-        <div class="modal fade" id="codigoEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Altere o seu email</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body ">
-                        <form class="row">
-                            <div>
-                                Digite o código recebido
-                            </div>
-                            <div class="break"></div>
-                            <div>
-                                <input type="email" class="form-control" id=""
-                                    placeholder="Código de verificação">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Salvar alteração</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
         <!-- Modal Número-->
         <div class="modal fade" id="editarNumero" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
@@ -140,7 +133,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body ">
-                        <form class="row">
+                        <form class="row" action="/alterardados"  method="post">
+                              <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
+                        
                             <div>
                                 <select class="form-select form-select-sm" name="" id="">
                                     <option value="">DDD</option>
@@ -148,13 +143,13 @@
                             </div>
                             <div class="break"></div>
                             <div>
-                                <input type="text" class="form-control" id=""
-                                    placeholder="Número de celular">
+                                <input minlength="11" maxlength="11" type="tel" class="form-control" id=""
+                                   name="numero" placeholder="Número de celular">
                             </div>
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Salvar Alterações</button>
                     </div>
                 </div>
             </div>

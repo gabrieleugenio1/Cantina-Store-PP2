@@ -20,6 +20,7 @@
             class="navbar navbar-dark bg-dark"
             aria-label="First navbar example"
           >
+          
             <div class="container-fluid">
               <button
                 class="navbar-toggler"
@@ -28,6 +29,7 @@
                 data-bs-target="#offcanvasLeft"
                 aria-controls="offcanvasLeft"
               >MENU</button>
+                
               <div
                 class="offcanvas offcanvas-start"
                 tabindex="-1"
@@ -62,17 +64,17 @@
                         ><i class="bi bi-table">Meus Pedidos</i></a
                       >
                     </li>
-                    <li class="nav-item">
+                    <li th:if="${session.usuarioLogado}"  class="nav-item">
                       <a class="nav-link text-dark" href="/minhaconta"
                         ><i class="bi bi-person-circle">Minha Conta</i></a
                       >
                     </li>
-                     <li class="nav-item">
+                     <li th:unless="${session.usuarioLogado}" class="nav-item">
                       <a class="nav-link text-dark" href="/cadastro"
                         ><i class="bi bi-person-circle">Criar Conta</i></a
                       >
                     </li>
-                     <li class="nav-item">
+                     <li th:unless="${session.usuarioLogado}"  class="nav-item">
                       <a class="nav-link text-dark" href="/login">
                       	<i class="bi bi-person-circle">Login</i>
                       </a>
@@ -81,6 +83,13 @@
                     	<a class="nav-link text-dark" href="/gerenciamento">
                     	<i class="bi bi-clipboard2-data"></i>Gerenciamento
                     	</a>
+                    </li>
+                     <li th:if="${session.usuarioLogado}" class="nav-item">
+                     	<form th:action="@{/logout}" method="post">
+							<i class="bi bi-box-arrow-right"></i>
+                     		<input type="submit" value="Logout"/>
+                     	</form>
+                    	
                     </li>
                   </ul>
                 </div>

@@ -27,15 +27,11 @@ public class UsuarioServico {
 	
 	
 	public void salvar(Usuarios usuarios) {
-		  usuarios.setSenha(passwordEncoder.encode(usuarios.getSenha()));
+		 // usuarios.setSenha(passwordEncoder.encode(usuarios.getSenha()));
+		
 		  usuariosdao.save(usuarios);
+			System.out.println( usuariosdao.save(usuarios));
 	}
-	public void entrar(Usuarios usuarios) {	
-		  usuarios.setSenha(passwordEncoder.encode(usuarios.getSenha()));
-		  
-		  System.out.println(usuarios.getSenha());
-		usuariosdao.findByEmailAndSenha(usuarios.getEmail(), usuarios.getSenha());
-		System.out.println(	usuariosdao.findByEmailAndSenha(usuarios.getEmail(), usuarios.getSenha())
-);
-	}
+	
+
 }
