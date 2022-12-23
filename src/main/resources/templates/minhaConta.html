@@ -55,10 +55,9 @@
                     </div>
                     <div class="div-edicao">
                         <div>
-                            <span class="fw-bold">Senha: </span>
+                            <span class="fw-bold">Apagar conta: </span>
                             <form th:action="@{/removerConta}" th:object="${usuarios}" method="post">
-                            <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
-                            <input type="submit" onclick="confirm('Você realmente deseja apagar sua conta?')" value="Apagar conta"/>
+                            <input type="submit" class="delete" onclick="return confirm('Você tem certeza que quer deletar sua conta?');" value="Apagar conta"/>
                             </form>
                         </div>
                         
@@ -76,9 +75,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body ">
-                        <form class="row"  action="/alterardados" method="post">
-                            <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
-                       
+                        <form class="row"  action="/alterardados" method="post">                       
                             <div>
                                 Fazer alteração do nome associado à sua conta.
                             </div>
@@ -104,9 +101,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body ">
-                        <form class="row" action="/alterardados"  method="post">
-                                    <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
-                        
+                        <form class="row" action="/alterardados"  method="post">                      
                             <div>
                                 Digite o novo endereço de email que você deseja associar à sua conta. Enviaremos um código de verificação para esse endereço.
                             </div>
@@ -133,9 +128,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body ">
-                        <form class="row" action="/alterardados"  method="post">
-                              <input type="hidden" name="codigo" style="display:none;" th:value ="${session.usuarioLogado.getId()}">
-                        
+                        <form class="row" action="/alterardados"  method="post">                        
                             <div>
                                 <select class="form-select form-select-sm" name="" id="">
                                     <option value="">DDD</option>
@@ -185,9 +178,9 @@
             </div>
         </div>
     </main>
+    <script src="./js/scripts.js"></script>
      <footer th:replace="/partials/footer :: footer"></footer>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/scripts.js"></script>
 </body>
 
 </html>

@@ -74,7 +74,9 @@ public class CardapioController {
 	}}
 	
 	@PostMapping("/removerConta")
-	public String removerVeiculo(Long codigo, HttpSession session) {
+	public String removerVeiculo(HttpSession session) {
+		String id = session.getAttribute("id").toString();
+		long codigo = Long.parseLong(id);
 		usuariosdao.deleteById(codigo);
 		session.invalidate();
 		return "redirect:/";
@@ -90,7 +92,11 @@ public class CardapioController {
 		return "redirect:/";
 	}
 	@PostMapping("/alterardados")
-	public String alterarDados(Usuarios usuarios,Long codigo,String nome, String email,RedirectAttributes redirect,String numero,HttpSession session) {		
+	public String alterarDados(Usuarios usuarios,String nome, String email,RedirectAttributes redirect,String numero,HttpSession session) {		
+		String id = session.getAttribute("id").toString();
+		long codigo = Long.parseLong(id);
+		System.out.println(codigo);
+		
 		Usuarios encontrado = usuariosdao.findById(codigo).orElse(null);
 		if(nome!= null) {
 			encontrado.setNome(nome);
@@ -106,6 +112,7 @@ public class CardapioController {
 		}		
 		usuariosdao.save(encontrado);
 		session.setAttribute("usuarioLogado", encontrado);
+		session.setAttribute("id", encontrado.getId());
 		return "redirect:/minhaconta";
 	}
 	
@@ -114,7 +121,8 @@ public class CardapioController {
 		Usuarios usuario = this.usuariosdao.findByEmailAndSenha(email, senha);
 		if (usuario != null) {
 			session.setAttribute("usuarioLogado", usuario);
-			System.out.println(usuario);
+			session.setAttribute("id", usuario.getId());
+			System.out.println(usuario.getId());
 			
 			return "redirect:/";
 		} else {
