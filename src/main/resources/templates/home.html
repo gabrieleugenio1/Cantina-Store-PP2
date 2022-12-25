@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <header th:replace="/partials/header :: headBlock"></header>
+    <header th:replace="~{/partials/pieces :: headBlock}"></header>
     <title>Cantina</title>
   </head>
 
   <body>
-  <header th:replace="/partials/header :: navbar"></header>
+  <header th:replace="~{/partials/pieces :: navbar}"></header>
     <main class="container">
     <div th:if="${session.usuarioLogado}">
     	<p th:utext="${session.usuarioLogado.getNome()}"></p>
     
-    </div>
-    	
-          <div class="container">
+   </div>	
+    <div class="container">
             <div class="nav-scroller bg-body">
               <nav class="nav">
                 <a class="nav-link text-dark" href="#coxinhas1"
@@ -204,8 +203,7 @@
           </div>
         </div>
       </section>
-      <br />
-    
+      <br/>
       <!-- Modal produtos-->
       <div>
         <form action="">
@@ -378,9 +376,6 @@
         </form>
       </div>
     </main>
-      <footer th:replace="/partials/footer :: footer"></footer>
-
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/scripts.js"></script>
+    <footer th:replace="~{/partials/pieces :: footer}"></footer>
   </body>
 </html>

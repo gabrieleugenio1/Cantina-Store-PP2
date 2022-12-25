@@ -2,12 +2,12 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <header th:replace="/partials/header :: headBlock"></header>
+    <header th:replace="~{/partials/pieces :: headBlock}"></header>
     <title>Tela de Login</title>
 </head>
 
 <body>
-    <header th:replace="/partials/header :: navbar"></header>
+    <header th:replace="~{/partials/pieces :: navbar}"></header>
     
     <div class="div-center">
      <div th:if="${mensagemErro}" style="position: absolute;top: 59px;z-index: 1;">
@@ -35,8 +35,8 @@
             </div>
         </form>
     </div>
-    <script src="./js/scripts.js"></script>
-    <footer th:replace="/partials/footer :: footer"></footer>
+
+    <footer th:replace="~{/partials/pieces :: footer}"></footer>
 </body>
 
 </html>

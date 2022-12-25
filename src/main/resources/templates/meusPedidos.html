@@ -2,12 +2,12 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <header th:replace="/partials/header :: headBlock"></header>
+    <header th:replace="~{/partials/pieces :: headBlock}"></header>
     <title>Meus Pedidos</title>
 </head>
 
 <body>
-  <header th:replace="partials/header :: navbar"></header>
+  <header th:replace="partials/pieces :: navbar"></header>
     <main class="container">        
         <section class="container">
             <div>
@@ -29,9 +29,7 @@
             </div>
         </section>
     </main>
-       <footer th:replace="/partials/footer :: footer"></footer>
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/scripts.js"></script>
+    <footer th:replace="~{/partials/pieces :: footer}"></footer>
 </body>
 
 </html>

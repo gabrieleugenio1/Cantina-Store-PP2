@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<header th:replace="/partials/header :: headBlock"></header>	
+		<header th:replace="~{/partials/pieces :: headBlock}"></header>	
 		<title>Gerenciamento</title>
 	</head>
 	<body>
-	  <header th:replace="/partials/header :: navbar"></header>
-	
-		<table>
-			
-		</table>
+	  <header th:replace="~{/partials/pieces :: navbar}"></header>
+	  <footer th:replace="~{/partials/pieces :: footer}"></footer>
 	</body>
 </html>
