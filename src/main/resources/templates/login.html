@@ -1,42 +1,50 @@
-	<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <header th:replace="~{/partials/pieces :: headBlock}"></header>
-    <title>Tela de Login</title>
+<header th:replace="~{/partials/pieces :: headBlock}"></header>
+<title>Tela de Login</title>
 </head>
 
 <body>
-    <header th:replace="~{/partials/pieces :: navbar}"></header>
-    
-    <div class="div-center">
-     <div th:if="${mensagemErro}" style="position: absolute;top: 59px;z-index: 1;">
-    			<div class="alert alert-danger" role="alert">
-  					<p th:utext="${mensagemErro}"></p>
+	<header th:replace="~{/partials/pieces :: navbar}"></header>
+
+	<div class="container">
+		<div th:if="${mensagemErro}"
+			style="position: absolute; top: 59px; z-index: 1;">
+			<div class="alert alert-danger" role="alert">
+				<p th:utext="${mensagemErro}"></p>
+			</div>
+		</div>
+
+		<form th:action="@{/login/usuario}" th:object="${usuarios}"
+			method="post">
+			<div class="container">
+				<h1>Login</h1>
+
+				<div class="break"></div>
+				<div>
+					<label for="" class="form-label">Email</label> <input type="email"
+						th:field="*{email}" class="form-control" name="email" required
+						autofocus>
+				</div>
+				<div class="break"></div>
+				<div class="">
+					<label for="" class="form-label">Senha</label> <input
+						type="password" th:field="*{senha}" class="form-control"
+						name="senha" required>
+				</div>
+				<div class="break"></div>
+				<div class="text-center">
+					<input type="submit" class="btn btn-success" value="Entrar" />
 				</div>
 			</div>
-			
-        <form th:action="@{/login/usuario}" th:object="${usuarios}" method="post">
-            <div class="container">
-                <h1>Login</h1>
-  
-                <div class="break"></div>
-                <div>
-                    <label for="" class="form-label" >Email</label>
-                    <input type="email" th:field="*{email}" class="form-control" name="email" required autofocus>
-                </div>              
-                <div class="break"></div>
-                <div class="">
-                    <label for="" class="form-label" >Senha</label>
-                    <input type="password" th:field="*{senha}" class="form-control" name="senha" required>
-                </div>
-                <div class="break"></div>
-                <div class="text-center"><input type="submit" class="btn btn-success" value="Entrar"/></div>
-            </div>
-        </form>
-    </div>
-
-    <footer th:replace="~{/partials/pieces :: footer}"></footer>
+		</form>
+	</div>
+	<footer class="text-center fixed-bottom">
+		<div th:replace="~{/partials/pieces :: footer}"></div>
+	</footer>
 </body>
 
 </html>
