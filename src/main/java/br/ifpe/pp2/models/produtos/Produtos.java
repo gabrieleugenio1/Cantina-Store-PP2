@@ -19,6 +19,8 @@ public class Produtos {
 	@Lob
 	private byte[] foto;
 	@ManyToOne
+	private Tipo tipo;
+	@ManyToOne
 	private ProdutosPedido carrinho;
 	
 	public Long getId_produto() {
@@ -62,5 +64,11 @@ public class Produtos {
 	}
 	public void setCarrinho(ProdutosPedido carrinho) {
 		this.carrinho = carrinho;
+	}
+	public Tipo getTipo() {
+		return tipo;
+	}
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 }

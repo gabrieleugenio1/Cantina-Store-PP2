@@ -16,12 +16,6 @@ public class ProdutosPedido {
 	private Long id_compra;
 	@ManyToOne
 	private Produtos produto;
-	public Produtos getProduto() {
-		return produto;
-	}
-	public void setProduto(Produtos produto) {
-		this.produto = produto;
-	}
 	private Integer quantidade;
     @OneToOne
     private Usuarios usuario;
@@ -45,5 +39,11 @@ public class ProdutosPedido {
 		this.usuario = usuario;
 	}    
 
+	public Produtos getProduto() {
+		return produto;
+	}
+	public void setProduto(Produtos produto) {
+		this.produto = produto;
+	}
 	 
 }
