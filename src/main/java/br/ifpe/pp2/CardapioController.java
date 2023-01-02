@@ -1,36 +1,20 @@
 package br.ifpe.pp2;
  
 import org.springframework.beans.factory.annotation.Autowired; 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.ifpe.pp2.models.compra.CompraDAO;
-import br.ifpe.pp2.models.produtos.ProdutosDAO;
-import br.ifpe.pp2.models.produtospedido.ProdutosPedidoDAO;
 import br.ifpe.pp2.models.usuarios.Usuarios;
 import br.ifpe.pp2.models.usuarios.UsuariosDAO;
-import br.ifpe.pp2.servicos.UsuarioServico;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CardapioController {
 	
 	@Autowired
-	private UsuarioServico servicousuarios;
-	@Autowired
 	private UsuariosDAO usuariosdao;
-	@Autowired
-	private ProdutosPedidoDAO produtospedidodao;
-	@Autowired
-	private ProdutosDAO produtosdao;
-	@Autowired
-	private CompraDAO compradao;
-	
-	
 	@GetMapping("/")
 	public String home() {
 		return "home";

@@ -15,8 +15,6 @@ import jakarta.servlet.http.HttpSession;
 @WebFilter("/*")
 public class FiltroUsuarioLogado implements Filter{
 	private String[] pathsLiberados = { "/","/login","/login/usuario","/meuspedidos", "/cadastro", "/salvar/novousuario","/gerenciamento", "/h2-console(.*)" ,"/css(.*)", "/js(.*)"};
-	private String[] pathsBloqueados = {"/cadastro","/login"};
-
 	@Override
 	
 	

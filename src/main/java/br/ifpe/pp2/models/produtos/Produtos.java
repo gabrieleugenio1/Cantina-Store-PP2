@@ -1,6 +1,6 @@
 package br.ifpe.pp2.models.produtos;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.Id; 
 import br.ifpe.pp2.models.produtospedido.ProdutosPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

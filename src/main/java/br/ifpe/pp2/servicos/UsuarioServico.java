@@ -20,9 +20,6 @@ public class UsuarioServico {
 	
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	@Autowired
 	private UsuariosDAO usuariosdao;
 	
 	

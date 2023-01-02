@@ -1,6 +1,7 @@
 package br.ifpe.pp2.models.compra;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Id; 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,8 +25,14 @@ public class Compra {
 	private TipoPagamento tipo;
 	private StatusPedido status;
 	@OneToOne
-	private ProdutosPedido pedido;
+	private List<ProdutosPedido>  pedido;
 	
+	public List<ProdutosPedido> getPedido() {
+		return pedido;
+	}
+	public void setPedido(List<ProdutosPedido> pedido) {
+		this.pedido = pedido;
+	}
 	public Long getId_produto() {
 		return id_produto;
 	}
@@ -62,12 +69,7 @@ public class Compra {
 	public void setStatus(StatusPedido status) {
 		this.status = status;
 	}
-	public ProdutosPedido getPedido() {
-		return pedido;
-	}
-	public void setPedido(ProdutosPedido pedido) {
-		this.pedido = pedido;
-	}
+	
 
 
 }
