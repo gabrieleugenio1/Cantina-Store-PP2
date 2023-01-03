@@ -98,7 +98,6 @@ body {
 	gap: 10px;
 	grid-template-columns: auto auto;
 	border-radius: 5px;
-	box-shadow: 2px 2px 2px 2px gray;
 }
 
 .info-prod {

@@ -17,7 +17,7 @@ public class Produtos {
 	private Integer estoque;
 	private Float preco;
 	@Lob
-	private byte[] foto;
+	private byte[] imagem;
 	@ManyToOne
 	private Tipo tipo;
 	@ManyToOne
@@ -53,11 +53,11 @@ public class Produtos {
 	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
-	public byte[] getFoto() {
-		return foto;
+	public byte[] getImagem() {
+		return imagem;
 	}
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 	public ProdutosPedido getCarrinho() {
 		return carrinho;

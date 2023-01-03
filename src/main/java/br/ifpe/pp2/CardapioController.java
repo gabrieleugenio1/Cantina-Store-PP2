@@ -1,10 +1,18 @@
 package br.ifpe.pp2;
  
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ifpe.pp2.models.produtos.Produtos;
@@ -28,6 +36,7 @@ public class CardapioController {
 	@GetMapping("/")
 	public String produtos( Model model) {
 		model.addAttribute("listaProdutos", this.produtosdao.findAll());
+		model.addAttribute("mostrarTipos", this.tipodao.findAll());
 		return "home";
 	}
 	
@@ -64,10 +73,18 @@ public class CardapioController {
 		return "redirect:/gerenciamento";
 	}
 	@PostMapping("/criarnovoproduto")
-	public String criarNovoProduto(Produtos produtos) {
+	public String criarNovoProduto(Produtos produtos, @RequestParam MultipartFile file) {
+		try {
+			produtos.setImagem(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		produtosdao.save(produtos);
 		return "redirect:/gerenciamento";
 	}
+	
+	
+	
 	
 	@PostMapping("/salvar/novousuario")
 	public String salvarUsuario(String email,Usuarios usuarios, RedirectAttributes redirect) {
@@ -142,5 +159,16 @@ public class CardapioController {
 
 	}
 
+	//Mostrar imagem
+	@GetMapping("/foto/{idprod}")
+	@ResponseBody
+	public byte[] exibirImagem(@PathVariable("idprod") Long idprod) {
+		Produtos produto = this.produtosdao.findById(idprod).orElse(null);
+		return produto.getImagem();
+	}
+	
+	
+	
+	
 
 }

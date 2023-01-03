@@ -30,7 +30,7 @@
 			</form>
 			<br />
 			<div th:each="prod: ${listaProdutos}">
-				<h1 th:text="${prod.tipo}"></h1>
+				<h1 th:text="${prod.tipo.nome}"></h1>
 				<div class="div-produto">
 					<div class="produto" data-bs-toggle="modal"
 						data-bs-target="#coxFrango" >
@@ -40,15 +40,15 @@
 							<div class="preco-prod" ><span>R$</span><span th:text="${prod.preco}"></span></div>
 						</div>
 						<div>
-						<div th:if="${prod.foto.length>5}">
+						<div th:if="${prod.imagem.length>5}">
 						
 							<img
-								th:href="${prod.foto}"
-								class="imagens" alt="" />
+								th:src="|/foto/${prod.id_produto}|"
+								class="imagens" th:alt="${prod.nome}" />
 						
 						
 						</div>
-						<div th:if="${prod.foto.length==0}">
+						<div th:if="${prod.imagem.length==0}">
 						<img
 								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
 								class="imagens" alt="" />

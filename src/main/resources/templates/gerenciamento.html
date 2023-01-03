@@ -47,8 +47,8 @@
     <div class="collapse multi-collapse" id="cadastroProduto">
       <div class="card card-body">
  
-		<form th:action="@{/criarnovoproduto}" method="post"
-			th:object="${produtos}">
+		<form th:action="@{/criarnovoproduto}"method="post" enctype="multipart/form-data"
+			th:object="${produtos}" > 
 			<div class="container">
 				<h1>Realizar cadastro de produtos</h1>
 				<div class="mb-3">
@@ -66,9 +66,6 @@
 						class="form-control" th:field="*{estoque}">
 				</div>
 
-
-
-
 				<select class="form-select form-select-sm"
 					aria-label=".form-select-sm example" th:field="*{tipo}">
 
@@ -84,7 +81,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="formFile" class="form-label">Insira a foto do
-						produto</label> <input class="form-control" th:field="*{foto}" type="file"
+						produto</label> <input class="form-control" name="file" accept="image/*" type="file"
 						id="formFile">
 				</div>
 
@@ -92,10 +89,9 @@
 					value="Criar novo produto">
 
 
-
 			</div>
 		</form>
-		      </div>
+	  </div>
     </div>
   </div>
 </div>
