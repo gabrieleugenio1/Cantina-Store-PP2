@@ -26,7 +26,7 @@ public class CardapioController {
 	private TipoDAO tipodao;
 	
 	@GetMapping("/")
-	public String produtos(Produtos produtos, Model model) {
+	public String produtos( Model model) {
 		model.addAttribute("listaProdutos", this.produtosdao.findAll());
 		return "home";
 	}

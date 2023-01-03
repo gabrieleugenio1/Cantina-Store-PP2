@@ -10,6 +10,7 @@ public class Tipo {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long id_tipo;
 	private String nome;
+	
 	public Long getId_tipo() {
 		return id_tipo;
 	}

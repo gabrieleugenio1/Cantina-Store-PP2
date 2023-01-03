@@ -29,20 +29,32 @@
 					placeholder="Procurar produto" aria-label="Search" />
 			</form>
 			<br />
-			<div id="coxinhas1">
-				<h1>Coxinhas1</h1>
+			<div th:each="prod: ${listaProdutos}">
+				<h1 th:text="${prod.tipo}"></h1>
 				<div class="div-produto">
 					<div class="produto" data-bs-toggle="modal"
-						data-bs-target="#coxFrango" th:each="prod: ${listaProdutos}">
+						data-bs-target="#coxFrango" >
 						<div class="info-prod">
 							<div class="nome-prod" th:text="${prod.nome}"></div>
 							<div class="descricao-prod" th:text="${prod.descricao}"></div>
-							<div class="preco-prod" th:text="${prod.preco}"></div>
+							<div class="preco-prod" ><span>R$</span><span th:text="${prod.preco}"></span></div>
 						</div>
 						<div>
+						<div th:if="${prod.foto.length>5}">
+						
 							<img
+								th:href="${prod.foto}"
+								class="imagens" alt="" />
+						
+						
+						</div>
+						<div th:if="${prod.foto.length==0}">
+						<img
 								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
 								class="imagens" alt="" />
+						
+						
+						</div>
 						</div>
 					</div>
 				</div>
