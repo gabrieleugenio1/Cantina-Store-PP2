@@ -26,7 +26,8 @@ public class CardapioController {
 	private TipoDAO tipodao;
 	
 	@GetMapping("/")
-	public String home() {
+	public String produtos(Produtos produtos, Model model) {
+		model.addAttribute("listaProdutos", this.produtosdao.findAll());
 		return "home";
 	}
 	
@@ -35,6 +36,10 @@ public class CardapioController {
 		return "meusPedidos";
 	}
 	
+	@GetMapping("/carrinho")
+	public String carrinho() {
+		return "carrinho";
+	}
 	@GetMapping("/minhaconta")
 	public String conta() {
 		return "minhaConta";
@@ -61,7 +66,7 @@ public class CardapioController {
 	@PostMapping("/criarnovoproduto")
 	public String criarNovoProduto(Produtos produtos) {
 		produtosdao.save(produtos);
-		 return "redirect:/gerenciamento";
+		return "redirect:/gerenciamento";
 	}
 	
 	@PostMapping("/salvar/novousuario")

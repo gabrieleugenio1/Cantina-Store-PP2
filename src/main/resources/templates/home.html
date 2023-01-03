@@ -33,138 +33,16 @@
 				<h1>Coxinhas1</h1>
 				<div class="div-produto">
 					<div class="produto" data-bs-toggle="modal"
-						data-bs-target="#coxFrango">
+						data-bs-target="#coxFrango" th:each="prod: ${listaProdutos}">
 						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Frango</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi.Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium
-								ameteiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
+							<div class="nome-prod" th:text="${prod.nome}"></div>
+							<div class="descricao-prod" th:text="${prod.descricao}"></div>
+							<div class="preco-prod" th:text="${prod.preco}"></div>
 						</div>
 						<div>
 							<img
 								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
 								class="imagens" alt="" />
-						</div>
-					</div>
-					<div class="produto">
-						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Queijo</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi. Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium amet
-								eiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
-						</div>
-						<div>
-							<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" alt="" />
-						</div>
-					</div>
-					<div class="produto">
-						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Camarão</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi.Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium
-								ameteiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
-						</div>
-						<div>
-							<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" />
-						</div>
-					</div>
-					<div class="produto">
-						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Ovo</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi. Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium amet
-								eiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
-						</div>
-						<div>
-							<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<br />
-			<div id="coxinhas2">
-				<h1>Coxinhas2</h1>
-				<div class="div-produto">
-					<div class="produto">
-						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Frango</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi.Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium
-								ameteiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
-						</div>
-						<div>
-							<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" />
-						</div>
-					</div>
-					<div class="produto">
-						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Queijo</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi. Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium amet
-								eiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
-						</div>
-						<div>
-							<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" alt="" />
-						</div>
-					</div>
-					<div class="produto">
-						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Camarão</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi.Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium
-								ameteiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
-						</div>
-						<div>
-							<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" />
-						</div>
-					</div>
-					<div class="produto">
-						<div class="info-prod">
-							<div class="nome-prod">Coxinha de Ovo</div>
-							<div class="descricao-prod">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Itaque, modi architecto? Sint,
-								animi. Sequi quibusdam assumenda recusandae quidem quia?
-								Consectetur quasi porro praesentium amet
-								eiustestetestecoxinhafrango</div>
-							<div class="preco-prod">R$5,00</div>
-						</div>
-						<div>
-							<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" />
 						</div>
 					</div>
 				</div>

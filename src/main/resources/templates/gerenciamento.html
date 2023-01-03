@@ -7,73 +7,86 @@
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 
-<main class="container">
+	<main class="container">
 		<div th:if="${sucess}"
 			style="position: absolute; top: 59px; z-index: 1;">
 			<div class="alert alert-success" role="alert">
-				<p th:utext="${sucess}"></p>
+				<p th:text="${sucess}"></p>
 			</div>
 		</div>
-	<form th:action="@{/criarnovotipo}" method="post" th:object="${tipo}" >
-		<div class="container">
+		<form th:action="@{/criarnovotipo}" method="post" th:object="${tipo}">
+			<div class="container">
 				<h1>Realizar cadastro de um novo tipo</h1>
-		  <label for="exampleFormControlInput1" class="form-label">Nome do tipo</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{nome}" placeholder="Nome do tipo">
-</div>		
-		<input class="btn btn-primary" type="submit" value="Criar novo tipo">
-		</div>
-	</form>
+				<div>
+					<label for="exampleFormControlInput1" class="form-label">Nome
+						do tipo</label> <input type="text" class="form-control"
+						id="exampleFormControlInput1" th:field="*{nome}"
+						placeholder="Nome do tipo">
+				</div>
+				<div class="break"></div>
+				<div>
+					<input class="btn btn-primary" type="submit"
+						value="Criar novo tipo">
+				</div>
+			</div>
+		</form>
 
-	<form th:action="@{/criarnovoproduto}" method="post" th:object="${produtos}" >
-	<div class="container">
+		<form th:action="@{/criarnovoproduto}" method="post"
+			th:object="${produtos}">
+			<div class="container">
 				<h1>Realizar cadastro de produtos</h1>
-		<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Nome do produto</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{nome}" placeholder="Nome do produto">
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text">R$</span>
-  <input type="number" class="form-control" step="0.01"  th:field="*{preco}">
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text">Estoque </span>
-  <input type="tel" class="form-control" th:field="*{estoque}">
-</div>
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Nome
+						do produto</label> <input type="text" class="form-control"
+						id="exampleFormControlInput1" th:field="*{nome}"
+						placeholder="Nome do produto">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text">R$</span> <input type="number"
+						class="form-control" step="0.01" th:field="*{preco}">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text">Estoque </span> <input type="tel"
+						class="form-control" th:field="*{estoque}">
+				</div>
 
 
 
-					
-<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-  <option selected>Selecione o tipo</option>
-						<option th:each="curso : ${tipoAlimento}"
-								th:text="${curso.nome}"
-								th:value="${curso.id_tipo}">
-						</option>
-</select>
 
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Descrição do produto</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" th:field="*{descricao}"  rows="3"></textarea>
-</div>
-<div class="mb-3">
-  <label for="formFile" class="form-label">Insira a foto do produto</label>
-  <input class="form-control" th:field="*{foto}"  type="file" id="formFile">
-</div>
+				<select class="form-select form-select-sm"
+					aria-label=".form-select-sm example">
+					<option selected>Selecione o tipo</option>
+					<option th:each="curso : ${tipoAlimento}" th:text="${curso.nome}"
+						th:value="${curso.id_tipo}"></option>
+				</select>
 
-	<input class="btn btn-primary" type="submit" value="Criar novo produto">
-	
-	
-	
-	</div>
-	</form>
+				<div class="mb-3">
+					<label for="exampleFormControlTextarea1" class="form-label">Descrição
+						do produto</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1"
+						th:field="*{descricao}" rows="3"></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="formFile" class="form-label">Insira a foto do
+						produto</label> <input class="form-control" th:field="*{foto}" type="file"
+						id="formFile">
+				</div>
+
+				<input class="btn btn-primary" type="submit"
+					value="Criar novo produto">
+
+
+
+			</div>
+		</form>
 
 
 	</main>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<footer class="text-center fixed-bottom">
 		<div th:replace="~{/partials/pieces :: footer}"></div>
 	</footer>
