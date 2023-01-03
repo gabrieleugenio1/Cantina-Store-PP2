@@ -6,16 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Tipo {
+public class Categorias {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private Long id_tipo;
+	private Long id_categoria;
 	private String nome;
 	
-	public Long getId_tipo() {
-		return id_tipo;
+	public Long getId_categoria() {
+		return id_categoria;
 	}
-	public void setId_tipo(Long id_tipo) {
-		this.id_tipo = id_tipo;
+	public void setId_categoria(Long id_categoria) {
+		this.id_categoria = id_categoria;
 	}
 	public String getNome() {
 		return nome;
@@ -23,4 +23,6 @@ public class Tipo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+
 }

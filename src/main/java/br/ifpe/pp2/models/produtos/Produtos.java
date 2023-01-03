@@ -19,7 +19,7 @@ public class Produtos {
 	@Lob
 	private byte[] imagem;
 	@ManyToOne
-	private Tipo tipo;
+	private Categorias categorias;
 	@ManyToOne
 	private ProdutosPedido carrinho;
 	
@@ -65,10 +65,10 @@ public class Produtos {
 	public void setCarrinho(ProdutosPedido carrinho) {
 		this.carrinho = carrinho;
 	}
-	public Tipo getTipo() {
-		return tipo;
+	public Categorias getCategorias() {
+		return categorias;
 	}
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
+	public void setTipo(Categorias categorias) {
+		this.categorias= categorias;
 	}
 }

@@ -29,9 +29,11 @@
 					placeholder="Procurar produto" aria-label="Search" />
 			</form>
 			<br />
+			<div th:each="tipo :${mostrarTipos}">
+			<h1 th:text="${tipo.nome}"></h1>
 			<div th:each="prod: ${listaProdutos}">
-				<h1 th:text="${prod.tipo.nome}"></h1>
-				<div class="div-produto">
+			
+				<div class="div-produto" th:if="${prod.tipo==tipo}">
 					<div class="produto" data-bs-toggle="modal"
 						data-bs-target="#coxFrango" >
 						<div class="info-prod">
@@ -40,25 +42,23 @@
 							<div class="preco-prod" ><span>R$</span><span th:text="${prod.preco}"></span></div>
 						</div>
 						<div>
-						<div th:if="${prod.imagem.length>5}">
-						
-							<img
-								th:src="|/foto/${prod.id_produto}|"
-								class="imagens" th:alt="${prod.nome}" />
-						
+						<div th:if="${prod.imagem.length>5}">						
+							<img	th:src="|/foto/${prod.id_produto}|"
+								class="imagens" th:alt="${prod.nome}" />						
 						
 						</div>
 						<div th:if="${prod.imagem.length==0}">
 						<img
 								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" alt="" />
-						
+								class="imagens" alt="" />						
 						
 						</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			</div>
+			
 		</section>
 		<br />
 		<!-- Modal produtos-->

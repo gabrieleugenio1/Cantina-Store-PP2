@@ -17,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ifpe.pp2.models.produtos.Produtos;
 import br.ifpe.pp2.models.produtos.ProdutosDAO;
-import br.ifpe.pp2.models.produtos.Tipo;
-import br.ifpe.pp2.models.produtos.TipoDAO;
+import br.ifpe.pp2.models.produtos.Categorias;
+import br.ifpe.pp2.models.produtos.CategoriasDAO;
 import br.ifpe.pp2.models.usuarios.Usuarios;
 import br.ifpe.pp2.models.usuarios.UsuariosDAO;
 import jakarta.servlet.http.HttpSession;
@@ -31,12 +31,13 @@ public class CardapioController {
 	@Autowired 
 	private ProdutosDAO produtosdao;
 	@Autowired
-	private TipoDAO tipodao;
+	private CategoriasDAO categoriadao;
 	
 	@GetMapping("/")
 	public String produtos( Model model) {
 		model.addAttribute("listaProdutos", this.produtosdao.findAll());
-		model.addAttribute("mostrarTipos", this.tipodao.findAll());
+		model.addAttribute("mostrarTipos", this.categoriadao.findAll());
+		
 		return "home";
 	}
 	
@@ -63,13 +64,13 @@ public class CardapioController {
 		return "cadastro";
 	}
 	@GetMapping("/gerenciamento")
-	public String gerenciamento(Tipo tipo,Produtos produtos,Model model) {
-		model.addAttribute("tipoAlimento", this.tipodao.findAll());
+	public String gerenciamento(Categorias categorias,Produtos produtos,Model model) {
+		model.addAttribute("tipoAlimento", this.categoriadao.findAll());
 		return "gerenciamento";
 	}
 	@PostMapping("/criarnovotipo")
-	public String criarNovoTipo(Tipo tipo) {
-		tipodao.save(tipo);
+	public String criarNovoTipo(Categorias tipo) {
+		categoriadao.save(tipo);
 		return "redirect:/gerenciamento";
 	}
 	@PostMapping("/criarnovoproduto")
@@ -83,9 +84,7 @@ public class CardapioController {
 		return "redirect:/gerenciamento";
 	}
 	
-	
-	
-	
+
 	@PostMapping("/salvar/novousuario")
 	public String salvarUsuario(String email,Usuarios usuarios, RedirectAttributes redirect) {
 		
