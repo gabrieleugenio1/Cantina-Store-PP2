@@ -14,9 +14,10 @@ import jakarta.servlet.http.HttpSession;
 
 @WebFilter("/*")
 public class FiltroAdmin implements Filter{
-	private String[] pathsLiberados = {"/*"};
 	private String[] pathsLiberadosTodos = { "/","/carrinho","/login","/login/usuario","/meuspedidos","/admin","/entrar/admin", "/cadastro", "/salvar/novousuario","/criarnovotipo","/gerenciamento","/criarnovoproduto", "/foto(.*)","/h2-console(.*)" ,"/css(.*)", "/js(.*)"};
-@Override
+	private String[] pathsLiberadosLogado = { "/","/minhaconta","/alterardados","/carrinho","/login","/login/usuario","/meuspedidos","/admin","/entrar/admin", "/cadastro", "/salvar/novousuario","/criarnovotipo","/gerenciamento","/criarnovoproduto", "/foto(.*)","/h2-console(.*)" ,"/css(.*)", "/js(.*)"};
+	
+	@Override
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -30,12 +31,24 @@ public class FiltroAdmin implements Filter{
 				chain.doFilter(request, response);
 				return;
 			}
-		}
+		}		
 		
-		if (sessao != null && sessao.getAttribute("tipo") == "admin") {
-			chain.doFilter(request, response);
-		} else if (sessao != null && sessao.getAttribute("usuarioLogado") != null){
-			chain.doFilter(request, response);
+	
+		System.out.println( sessao.getAttribute("tipo"));
+		if(path.startsWith("/admin")) {
+			if (sessao != null && sessao.getAttribute("tipo") != "admin") {
+				res.sendRedirect("/");
+				
+			}else {
+				chain.doFilter(request, response);
+
+			}
+		}
+		if (sessao != null && sessao.getAttribute("usuarioLogado") != null){		
+		chain.doFilter(request, response);
+
+			
+			
 		} else {
 			res.sendRedirect("/");
 		}
