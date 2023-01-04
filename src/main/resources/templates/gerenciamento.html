@@ -8,10 +8,10 @@
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 
 	<main class="container">
-		<div th:if="${sucess}"
-			style="position: absolute; top: 59px; z-index: 1;">
-			<div class="alert alert-success" role="alert">
-				<p th:text="${sucess}"></p>
+		<div th:if="${mensagem}"
+			style="position: absolute; top: 59px;right:0; z-index: 1;">
+			<div class="alert alert-danger" role="alert">
+				<p th:text="${mensagem}"></p>
 			</div>
 		</div>
 <p>
@@ -29,13 +29,13 @@
 				<h1>Realizar cadastro de um novo tipo</h1>
 				<div>
 					<label for="exampleFormControlInput1" class="form-label">Nome
-						do tipo</label> <input type="text" class="form-control"
-						id="exampleFormControlInput1" th:field="*{nome}"
+						do tipo</label> <input type="text"  name="categoria" class="form-control"
+						th:field="*{nome}" 
 						placeholder="Nome do tipo">
 				</div>
 				<div class="break"></div>
 				<div>
-					<input class="btn btn-primary" type="submit"
+					<input class="btn btn-primary" type="submit" 
 						value="Criar novo tipo">
 				</div>
 		
@@ -69,8 +69,8 @@
 				<select class="form-select form-select-sm"
 					aria-label=".form-select-sm example" th:field="*{categorias}">
 
-					<option th:each="tipoAlimento : ${tipoAlimento}" th:text="${tipoAlimento.nome}"
-						th:value="${tipoAlimento.id_categoria}"></option>
+					<option th:each="tipo : ${tipoAlimento}" th:text="${tipo.nome}"
+						th:value="${tipo.id_categoria}"></option>
 				</select>
 
 				<div class="mb-3">

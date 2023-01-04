@@ -25,7 +25,7 @@ public class Usuarios {
 	private String senha; 
 	private String telefone;
 	 @Column(nullable = false)
-	private Boolean tipo = false;
+	private Boolean admin = false;
 	@Lob
 	private byte[] foto;
 	
@@ -77,10 +77,11 @@ public class Usuarios {
 	public void setCriacaoConta(LocalDate criacaoConta) {
 		this.criacaoConta = criacaoConta;
 	}
-	public Boolean getTipo() {
-		return tipo;
+	public Boolean getAdmin() {
+		return admin;
 	}
-	public void setTipo(Boolean tipo) {
-		this.tipo = tipo;
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
+
 }

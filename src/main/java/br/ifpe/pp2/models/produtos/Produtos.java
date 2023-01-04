@@ -22,7 +22,6 @@ public class Produtos {
 	private Categorias categorias;
 	@ManyToOne
 	private ProdutosPedido carrinho;
-	
 	public Long getId_produto() {
 		return id_produto;
 	}
@@ -59,16 +58,18 @@ public class Produtos {
 	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}
+	public Categorias getCategorias() {
+		return categorias;
+	}
+	public void setCategorias(Categorias categorias) {
+		this.categorias = categorias;
+	}
 	public ProdutosPedido getCarrinho() {
 		return carrinho;
 	}
 	public void setCarrinho(ProdutosPedido carrinho) {
 		this.carrinho = carrinho;
 	}
-	public Categorias getCategorias() {
-		return categorias;
-	}
-	public void setTipo(Categorias categorias) {
-		this.categorias= categorias;
-	}
+	
+
 }

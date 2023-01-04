@@ -7,19 +7,16 @@
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
-	<main class="container">
+	<main class="container">	
 		<div th:if="${session.usuarioLogado}">
 			<p th:utext="${session.usuarioLogado.getNome()}"></p>
-
 		</div>
 		<div class="container-left">
 			<div class="nav-scroller bg-body">
-				<nav class="nav">
-					<a class="nav-link text-dark" href="#coxinhas1">Tipo de Produto
-						1</a> <a class="nav-link text-dark" href="#coxinhas2">Tipo de
-						Produto 2</a> <a class="nav-link text-dark" href="#produto3">Tipo
-						de Produto 3</a> <a class="nav-link text-dark" href="#produto4">Tipo
-						de Produto 4</a>
+				<nav class="nav" th:each="tipo :${mostrarTipos}">
+					<a class="nav-link text-dark" th:href="@{'#'+${tipo.nome}}"
+						th:text="${tipo.nome}"></a>
+
 				</nav>
 			</div>
 		</div>
@@ -30,57 +27,79 @@
 			</form>
 			<br />
 			<div th:each="tipo :${mostrarTipos}">
-			<h1 th:text="${tipo.nome}"></h1>
-			<div th:each="prod: ${listaProdutos}">
-			
-				<div class="div-produto" th:if="${prod.tipo==tipo}">
-					<div class="produto" data-bs-toggle="modal"
-						data-bs-target="#coxFrango" >
-						<div class="info-prod">
-							<div class="nome-prod" th:text="${prod.nome}"></div>
-							<div class="descricao-prod" th:text="${prod.descricao}"></div>
-							<div class="preco-prod" ><span>R$</span><span th:text="${prod.preco}"></span></div>
-						</div>
-						<div>
-						<div th:if="${prod.imagem.length>5}">						
-							<img	th:src="|/foto/${prod.id_produto}|"
-								class="imagens" th:alt="${prod.nome}" />						
-						
-						</div>
-						<div th:if="${prod.imagem.length==0}">
-						<img
-								src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
-								class="imagens" alt="" />						
-						
-						</div>
+				<h1 th:id="${tipo.nome}" th:text="${tipo.nome}"></h1>
+				<div th:each="prod: ${listarProdutos}">
+
+					<div class="div-produto" th:if="${prod.categorias==tipo}">
+						<div class="produto" data-bs-toggle="modal"
+							th:data-bs-target="@{'#' +${prod.nome}}">
+							<div class="info-prod">
+								<div class="nome-prod" th:text="${prod.nome}"></div>
+								<div class="descricao-prod" th:text="${prod.descricao}"></div>
+								<div class="preco-prod">
+									<span>R$</span><span th:text="${prod.preco}"></span>
+								</div>
+							</div>
+							<div>
+								<div th:if="${prod.imagem.length>5}">
+									<img th:src="|/foto/${prod.id_produto}|" class="imagens"
+										th:alt="${prod.nome}" />
+
+								</div>
+								<div th:if="${prod.imagem.length==0}">
+									<img
+										src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
+										class="imagens" alt="" />
+
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			</div>
-			
+
 		</section>
 		<br />
 		<!-- Modal produtos-->
 		<div>
 			<form action="">
-				<div class="modal fade" id="coxFrango" tabindex="-1"
+				<div th:each="prod: ${listarProdutos}" class="modal fade"
+					th:id="${prod.nome}" tabindex="-1"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="container">
 								<h4>Descrição</h4>
-								<div>Coxinha recheada de frango blablablablabla</div>
+								<div th:text="${prod.descricao}"></div>
 							</div>
 							<div class="modal-header">
-								<h1 class="modal-title fs-5" id="">Coxinha de frango</h1>
+								<h1 class="modal-title fs-5" th:text="${prod.nome}"></h1>
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
 							<div class="modal-header rounded mx-auto d-block">
-								<img class="img-fluid"
-									src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png" />
+							
+								<div th:if="${prod.imagem.length>2}">
+									<img th:src="|/foto/${prod.id_produto}|" class="img-fluid" style="height:20rem;"
+										th:alt="${prod.nome}" />
+
+								</div>
+								<div th:if="${prod.imagem.length==0}">
+									<img
+										src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
+										class="img-fluid" alt="" />
+
+								</div>
 							</div>
+
+
+
+
+
+
+
+
+
 							<div class="modal-body">
 								<div class="row align-items-start">
 									<div class="col">

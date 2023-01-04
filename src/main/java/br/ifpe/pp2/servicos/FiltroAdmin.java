@@ -13,10 +13,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebFilter("/*")
-public class FiltroUsuarioLogado implements Filter{
-	private String[] pathsLiberados = { "/","/carrinho","/login","/login/usuario","/meuspedidos", "/cadastro", "/salvar/novousuario","/criarnovotipo","/gerenciamento","/criarnovoproduto", "/foto(.*)","/h2-console(.*)" ,"/css(.*)", "/js(.*)"};
-	@Override
-	
+public class FiltroAdmin implements Filter{
+	private String[] pathsLiberados = {"/*"};
+	private String[] pathsLiberadosTodos = { "/","/carrinho","/login","/login/usuario","/meuspedidos","/admin","/entrar/admin", "/cadastro", "/salvar/novousuario","/criarnovotipo","/gerenciamento","/criarnovoproduto", "/foto(.*)","/h2-console(.*)" ,"/css(.*)", "/js(.*)"};
+@Override
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -24,16 +24,17 @@ public class FiltroUsuarioLogado implements Filter{
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession sessao = req.getSession();
 		String path = req.getRequestURI();
-		// Verificar se o path chamado está na lista dos liberados
-		for (String livre : pathsLiberados) {
+
+		for (String livre : pathsLiberadosTodos) {
 			if (path.matches(livre)) {
 				chain.doFilter(request, response);
 				return;
 			}
 		}
-
-
-		if (sessao != null && sessao.getAttribute("usuarioLogado") != null) {
+		
+		if (sessao != null && sessao.getAttribute("tipo") == "admin") {
+			chain.doFilter(request, response);
+		} else if (sessao != null && sessao.getAttribute("usuarioLogado") != null){
 			chain.doFilter(request, response);
 		} else {
 			res.sendRedirect("/");
