@@ -86,11 +86,16 @@ public class CardapioController {
 	
 	@PostMapping("/login/usuario")
 	public String loginUsuario(String email,String senha, RedirectAttributes ra, HttpSession session) {
+
+		
 		Usuarios usuario = this.usuariosdao.findByEmailAndSenha(email, senha);
 		if (usuario != null) {
 			session.setAttribute("usuarioLogado", usuario);
 			session.setAttribute("id", usuario.getId());
 			session.setAttribute("tipo", usuario.getAdmin());
+			if(session.getAttribute("tipo") == "admin") {
+				session.invalidate();
+			}
 			System.out.println(usuario.getId());
 			
 			return "redirect:/";

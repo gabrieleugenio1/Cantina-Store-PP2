@@ -20,8 +20,12 @@ public class AdminController {
 	public String admin() {
 		return "admin/admin";
 	}
+	
 	@PostMapping("/entrar/admin")
 	public String entrarAdmin(String login, String senha, HttpSession session, RedirectAttributes redirect) {
+		if(session.getAttribute("tipo") == "true" || session.getAttribute("tipo") == "false" ) {
+			session.invalidate();
+		}
 		String loginAdmin = login.toLowerCase();
 		String senhaAdmin = senha.toLowerCase();
 		System.out.println(loginAdmin.compareTo("entrar") + "  " + senhaAdmin.compareTo("123"));
@@ -33,10 +37,11 @@ public class AdminController {
 			return "redirect:/admin";
 		}
 	}
-	@GetMapping("/editarUsuario")
+	
+	@GetMapping("/admin/editarUsuario")
 	public String editarVeiculo(Long codigo, Model model) {
 		Usuarios usuarios = usuariosdao.findById(codigo).orElse(null);
-		model.addAttribute("usuarios",usuarios);
+		model.addAttribute("usuarioAlterar", usuarios);
 		return "admin/alterarUsuario";
 	}
 	@GetMapping("/admin/index")
@@ -44,12 +49,9 @@ public class AdminController {
 		model.addAttribute("listarUsuarios", usuariosdao.findAll());
 		return "admin/index";
 	}
-	@PostMapping("/alterardadosusuario")
-	public String alterarDados(Usuarios usuarios,String nome,String tipoconta, String email,RedirectAttributes redirect,String numero,HttpSession session) {		
-		String id = session.getAttribute("id").toString();
-		long codigo = Long.parseLong(id);
-		System.out.println(tipoconta);
-		
+	@PostMapping("/admin/alterardadosusuario")
+	public String alterarDados(Usuarios usuarios,String nome,String tipoconta, String email,RedirectAttributes redirect,String numero,Long codigo) {		
+	
 		Boolean admin = Boolean.valueOf(tipoconta);
 		Usuarios encontrado = usuariosdao.findById(codigo).orElse(null);
 		if(tipoconta!= null) {

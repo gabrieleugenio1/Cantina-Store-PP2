@@ -33,22 +33,17 @@ public class FiltroAdmin implements Filter{
 			}
 		}		
 		
-	
-		System.out.println( sessao.getAttribute("tipo"));
-		if(path.startsWith("/admin")) {
-			if (sessao != null && sessao.getAttribute("tipo") != "admin") {
-				res.sendRedirect("/");
-				
-			}else {
-				chain.doFilter(request, response);
+		if (sessao != null && sessao.getAttribute("tipo") == "admin") {
+			chain.doFilter(request, response);
 
+		}else if (sessao != null && sessao.getAttribute("usuarioLogado") != null){		
+			for (String livre : pathsLiberadosLogado) {
+				if (path.matches(livre)) {
+					chain.doFilter(request, response);
+					return;
+				}
 			}
-		}
-		if (sessao != null && sessao.getAttribute("usuarioLogado") != null){		
-		chain.doFilter(request, response);
 
-			
-			
 		} else {
 			res.sendRedirect("/");
 		}

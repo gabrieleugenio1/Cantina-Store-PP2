@@ -24,7 +24,7 @@
 					<div class="div-edicao">
 						<div>
 							<span class="fw-bold">Nome: </span><span
-								th:utext="${session.usuarioLogado.getNome()}"></span>
+								th:text="${usuarioAlterar.getNome()}"></span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarNome">
 							<button type="button" class="botao">Editar</button>
@@ -34,7 +34,7 @@
 					<div class="div-edicao">
 						<div>
 							<span class="fw-bold">Email: </span><span
-								th:utext="${session.usuarioLogado.getEmail()}">Email</span>
+								th:text="${usuarioAlterar.getEmail()}">Email</span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarEmail">
 							<button type="button" class="botao">Editar</button>
@@ -44,7 +44,7 @@
 					<div class="div-edicao">
 						<div>
 							<span class="fw-bold">Número: </span><span
-								th:utext="${session.usuarioLogado.getTelefone()}">Número</span>
+								th:text="${usuarioAlterar.getTelefone()}">Número</span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarNumero">
 							<button type="button" class="botao">Editar</button>
@@ -62,7 +62,7 @@
 					<div class="div-edicao">
 						<div>
 							<span class="fw-bold">Admin: </span> <span
-								th:text="${session.usuarioLogado.getAdmin()}"></span>
+								th:text="${usuarioAlterar.getAdmin()}"></span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarTipo">
 							<button type="button" class="botao">Editar</button>
@@ -71,7 +71,7 @@
 					<div class="div-edicao">
 						<div>
 							<span class="fw-bold">Apagar conta: </span>
-							<form th:action="@{/removerConta}" th:object="${usuarios}"
+							<form th:action="@{/admin/removerConta}" th:object="${usuarios}"
 								method="post">
 								<input type="submit" class="delete"
 									onclick="return confirm('Você tem certeza que quer deletar a conta?');"
@@ -96,7 +96,7 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/alterardadosusuario" method="post">
+						<form class="row" action="/admin/alterardadosusuario" method="post">
 							<div>Fazer alteração do nome.</div>
 							<div class="break"></div>
 							<div>
@@ -123,7 +123,7 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/alterardadosusuario" method="post">
+						<form class="row" action="/admin/alterardadosusuario" method="post">
 							<div>Digite o novo endereço de email que você deseja
 								associar à sua conta. Enviaremos um código de verificação para
 								esse endereço.</div>
@@ -153,7 +153,7 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/alterardadosusuario" method="post">
+						<form class="row" action="/admin/alterardadosusuario" method="post">
 							<div>
 								<select class="form-select form-select-sm" name="" id="">
 									<option value="">DDD</option>
@@ -186,7 +186,7 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/alterardadosusuario" method="post">
+						<form class="row" action="/admin/alterardadosusuario" method="post">
 							<div>Fazer alteração do tipo da conta.</div>
 							<div class="break"></div>
 							<div>
