@@ -90,14 +90,13 @@ public class CardapioController {
 		
 		Usuarios usuario = this.usuariosdao.findByEmailAndSenha(email, senha);
 		if (usuario != null) {
-			session.setAttribute("usuarioLogado", usuario);
-			session.setAttribute("id", usuario.getId());
-			session.setAttribute("tipo", usuario.getAdmin());
 			if(session.getAttribute("tipo") == "admin") {
 				session.invalidate();
 			}
-			System.out.println(usuario.getId());
-			
+			session.setAttribute("usuarioLogado", usuario);
+			session.setAttribute("id", usuario.getId());
+			session.setAttribute("tipo", usuario.getAdmin());
+			System.out.println(usuario.getId());			
 			return "redirect:/";
 		} else {
 			ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos");

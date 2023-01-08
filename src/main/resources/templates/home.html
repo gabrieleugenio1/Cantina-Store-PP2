@@ -9,7 +9,7 @@
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 	<main class="container">	
 		<div th:if="${session.usuarioLogado}">
-			<p th:utext="${session.usuarioLogado.getNome()}"></p>
+			<p th:text="${session.usuarioLogado.getNome()}"></p>
 		</div>
 		<div class="container-left">
 			<div class="nav-scroller bg-body">

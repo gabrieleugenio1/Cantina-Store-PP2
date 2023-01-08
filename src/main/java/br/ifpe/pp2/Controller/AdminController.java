@@ -50,11 +50,13 @@ public class AdminController {
 		return "admin/index";
 	}
 	@PostMapping("/admin/alterardadosusuario")
-	public String alterarDados(Usuarios usuarios,String nome,String tipoconta, String email,RedirectAttributes redirect,String numero,Long codigo) {		
+	public String alterarDados(Long codigo, Usuarios usuarios,String nome,String tipodaconta, String email,RedirectAttributes redirect,String numero) {		
 	
-		Boolean admin = Boolean.valueOf(tipoconta);
+		System.out.println(codigo);
+		System.out.println(tipodaconta);
+		Boolean admin = Boolean.valueOf(tipodaconta);
 		Usuarios encontrado = usuariosdao.findById(codigo).orElse(null);
-		if(tipoconta!= null) {
+		if(tipodaconta!= null) {
 			encontrado.setAdmin(admin);
 			redirect.addFlashAttribute("sucess", "Tipo alterado com sucesso.");
 		}

@@ -124,6 +124,8 @@
 					</div>
 					<div class="modal-body ">
 						<form class="row" action="/admin/alterardadosusuario" method="post">
+						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
+						
 							<div>Digite o novo endereço de email que você deseja
 								associar à sua conta. Enviaremos um código de verificação para
 								esse endereço.</div>
@@ -154,6 +156,8 @@
 					</div>
 					<div class="modal-body ">
 						<form class="row" action="/admin/alterardadosusuario" method="post">
+						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
+						
 							<div>
 								<select class="form-select form-select-sm" name="" id="">
 									<option value="">DDD</option>
@@ -187,14 +191,16 @@
 					</div>
 					<div class="modal-body ">
 						<form class="row" action="/admin/alterardadosusuario" method="post">
+						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
+						
 							<div>Fazer alteração do tipo da conta.</div>
 							<div class="break"></div>
 							<div>
-								<select class="form-select form-select-sm"
+								<select class="form-select form-select-sm" name="tipodaconta" 
 									aria-label=".form-select-sm example">
-									<option name="tipoconta"  value="false"
+									<option  value="false"
 										selected>Comum</option>
-									<option name="tipoconta" value="true">Admin</option>
+									<option value="true">Admin</option>
 
 								</select>
 
@@ -220,6 +226,8 @@
 					</div>
 					<div class="modal-body ">
 						<form class="row">
+						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
+						
 							<div>
 								<div>
 									<input type="password" class="form-control" id=""
