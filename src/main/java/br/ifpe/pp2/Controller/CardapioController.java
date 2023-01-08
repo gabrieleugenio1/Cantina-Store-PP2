@@ -1,8 +1,10 @@
 package br.ifpe.pp2.Controller;
  
-import java.io.IOException; 
+import java.io.IOException;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,16 @@ public class CardapioController {
 		model.addAttribute("listarProdutos", this.produtosdao.findAll());
 		model.addAttribute("mostrarTipos", this.categoriadao.findAll());		
 		return "home";
+	}
+	
+	//Pesquisar produtos		
+	@PostMapping("/pesquisarProdutos")
+	public String pesquisarProdutos(String nomeProduto, Model model) {
+
+		List<Produtos> resultado = this.produtosdao
+			.findByNomeContainingIgnoreCase(nomeProduto, Sort.by("nome"));
+		model.addAttribute("listaProdutos", resultado);
+		return "vendas/produto-search";
 	}
 	
 	//Mostrar imagem

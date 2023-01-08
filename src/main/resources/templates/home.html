@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head>
-<header th:replace="~{/partials/pieces :: headBlock}"></header>
-<title>Cantina</title>
+<head th:replace="~{/partials/pieces :: headBlock}">
+<title>Cantina Store</title>
 </head>
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 	<main class="container">	
 		<div th:if="${session.usuarioLogado}">
-			<p th:text="${session.usuarioLogado.getNome()}"></p>
+			<p th:utext="${session.usuarioLogado.getNome()}"></p>
 		</div>
 		<div class="container-left">
-			<div class="nav-scroller bg-body">
-				<nav class="nav" th:each="tipo :${mostrarTipos}">
+		<nav class="nav" >
+			<div class="nav-scroller bg-body"th:each="tipo :${mostrarTipos}">
 					<a class="nav-link text-dark" th:href="@{'#'+${tipo.nome}}"
 						th:text="${tipo.nome}"></a>
 
-				</nav>
 			</div>
+		</nav>
 		</div>
 		<section class="container-center">
 			<form>
@@ -32,12 +31,12 @@
 
 					<div class="div-produto" th:if="${prod.categorias==tipo}">
 						<div class="produto" data-bs-toggle="modal"
-							th:data-bs-target="@{'#' +${prod.nome}}">
+							th:data-bs-target="@{'#a' +${prod.id_produto}}">
 							<div class="info-prod">
 								<div class="nome-prod" th:text="${prod.nome}"></div>
 								<div class="descricao-prod" th:text="${prod.descricao}"></div>
 								<div class="preco-prod">
-									<span>R$</span><span th:text="${prod.preco}"></span>
+									<span style="font-weight: bold;">R$</span><span th:text="${#strings.replace(prod.preco,'.',',')}"></span>
 								</div>
 							</div>
 							<div>
@@ -62,10 +61,9 @@
 		<br />
 		<!-- Modal produtos-->
 		<div>
-			<form action="">
 				<div th:each="prod: ${listarProdutos}" class="modal fade"
-					th:id="${prod.nome}" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					th:id="@{'a' + ${prod.id_produto}}" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden=true>
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="container">
@@ -74,6 +72,11 @@
 							</div>
 							<div class="modal-header">
 								<h1 class="modal-title fs-5" th:text="${prod.nome}"></h1>
+								<div style="font-weight: bold; font-size: 1.3rem; color: #008000"> 
+								
+								<span> &nbsp; R$</span><span th:text="${#strings.replace(prod.preco,'.',',')}"></span>
+								</div>
+								
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
@@ -178,7 +181,6 @@
 						</div>
 					</div>
 				</div>
-			</form>
 		</div>
 	</main>
 	<footer th:replace="~{/partials/pieces :: footer}"></footer>
