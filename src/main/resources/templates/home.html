@@ -63,7 +63,6 @@
 				aria-labelledby="exampleModalLabel" aria-hidden=true>
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<form th:action="@{/addCarrinho}" method="post">
 							<div class="container">
 								<h4>Descrição</h4>
 								<div th:text="${prod.descricao}"></div>
@@ -73,7 +72,7 @@
 								<div
 									style="font-weight: bold; font-size: 1.3rem; color: #008000">
 									<span> &nbsp; R$</span><span
-										th:text="${#strings.replace(prod.preco,'','')}"></span>
+										th:text="${#strings.replace(prod.preco,'.',',')}"></span>
 								</div>
 
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -168,12 +167,12 @@
 										Adicionar</button>
 								</div>
 							</div>
-						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
-	<footer th:replace="~{/partials/pieces :: footer}"></footer>
+	<footer th:replace="~{/partials/pieces :: footer}">
+	</footer>
 </body>
 </html>

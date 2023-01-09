@@ -2,7 +2,7 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{/partials/pieces :: headBlock}">
-<title>Listar usuários</title>
+<title>Modificar Pedidos</title>
 </head>
 
 <body>
@@ -11,19 +11,22 @@
 		<table class="table-responsive table-bordered border-success">
 			<thead>
 				<tr>
-					<th scope="col">Nome</th>
-					<th scope="col">E-mail</th>
-					<th scope="col">Celular</th>
-					<th scope="col">Admin</th>
-					<th scope="col">Editar conta</th>
+					<th scope="col">Comprado por</th>
+					<th scope="col">Contato</th>
+					<th scope="col">Itens</th>
+					<th scope="col">Valor</th>
+					<th scope="col">Status</th>
+					<th scope="col">Editar Pedido</th>
 				</tr>
 			</thead>
-			<tr th:each="cont : ${listarUsuarios}">
-				<td th:text="${cont.nome}"></td>
+			<tr th:each="cont : ${listarCompras}">
+				<td th:text="${cont.usuario.getNome()}"></td>
+				<td th:text="${cont.usuario.getTelefone()}"></td>
+				<td th:text="${cont.produto}"></td>
+				<td th:text="${cont.valorTotal}"></td>
 				<td th:text="${cont.email}"></td>
-				<td th:text="${cont.telefone}"></td>
 				<td th:text="${cont.admin}"></td>
-				<td><a th:href="|/admin/editarUsuario?codigo=${cont.id}|">Alterar
+				<td><a th:href="|/admin/editarPedido?codigo=${cont.id}|">Alterar
 						conta</a></td>
 			</tr>
 		</table>

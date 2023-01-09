@@ -23,7 +23,7 @@ public class AdminController {
 	
 	@PostMapping("/entrar/admin")
 	public String entrarAdmin(String login, String senha, HttpSession session, RedirectAttributes redirect) {
-		if(session.getAttribute("tipo") == "true" || session.getAttribute("tipo") == "false" ) {
+		if(session.getAttribute("UsuarioLogado") != null || session.getAttribute("tipo") == "true" || session.getAttribute("tipo") == "false" ) {
 			session.invalidate();
 		}
 		String loginAdmin = login.toLowerCase();
@@ -76,3 +76,5 @@ public class AdminController {
 		return "redirect:/admin/index";
 	}	
 }
+
+

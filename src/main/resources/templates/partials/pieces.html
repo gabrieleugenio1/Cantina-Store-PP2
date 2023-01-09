@@ -24,7 +24,7 @@
 							aria-controls="offcanvasLeft">MENU</button>
 						<span th:if="${session.usuarioLogado}"> <span
 							class="font-input text-white">Bem-vindo </span><span
-							th:utext="${session.usuarioLogado.getNome()}"
+							th:utext="@{${session.usuarioLogado.getNome()} + '!'}"
 							class="fst-italic font-input text-white"></span>
 						</span> <a href="/carrinho" class="navbar-toggler"><span
 							class="bi bi-cart"></span></a>
@@ -63,9 +63,9 @@
 										class="nav-item"><a class="nav-link text-white"
 										href="/gerenciamento"> <span class="bi bi-clipboard2-data"></span> Gerenciamento
 									</a></li>
-									<li th:if="${session.tipo=='admin'}" class="nav-item">
-										<a class="nav-link text-white" href="/admin/index"> <span
-											class="bi bi-person-fill-gear"> Dados dos Usuarios</span>
+									<li th:if="${session.tipo=='admin' || session.tipo==true}" class="nav-item">
+										<a class="nav-link text-white" href="/modificarPedidos"> <span
+											class="bi bi-person-fill-gear"> Modificar pedidos</span>
 									</a>
 									</li>
 									

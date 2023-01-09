@@ -1,7 +1,6 @@
 package br.ifpe.pp2.Controller;
 
-import java.io.IOException;
-
+import java.io.IOException; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import br.ifpe.pp2.models.compra.CompraDAO;
 import br.ifpe.pp2.models.produtos.Categorias;
 import br.ifpe.pp2.models.produtos.CategoriasDAO;
 import br.ifpe.pp2.models.produtos.Produtos;
@@ -18,7 +17,7 @@ import br.ifpe.pp2.models.produtos.ProdutosDAO;
 import br.ifpe.pp2.models.usuarios.Usuarios;
 import br.ifpe.pp2.models.usuarios.UsuariosDAO;
 import jakarta.servlet.http.HttpSession;
-
+ 
 @Controller
 public class CriacaoController {
 	@Autowired
@@ -27,6 +26,9 @@ public class CriacaoController {
 	private ProdutosDAO produtosdao;
 	@Autowired
 	private CategoriasDAO categoriadao;
+	@Autowired
+	private CompraDAO compradao;
+	
 	
 	@GetMapping("/cadastro")
 	public String cadastro(Usuarios usuario) {
@@ -91,6 +93,22 @@ public class CriacaoController {
 		}
 	}
 	
+	@PostMapping("/modificarcategoria")
+	public String modificarCategoria(String nome, Integer antigonome,RedirectAttributes redirect) {
+		Categorias alterarNome = categoriadao.findById(antigonome).orElse(null);
+		System.out.println( categoriadao.findById(antigonome));
+
+		if(nome != null && categoriadao.findById(antigonome) == null) {	
+			alterarNome.setNome(nome);	
+			System.out.println(alterarNome.getNome());
+			return "redirect:/gerenciamento";
+		}else {
+			redirect.addFlashAttribute("mensagem", "Categoria já existe ou nula");
+			return "redirect:/gerenciamento";
+		}
+	}
+	
+	
 	@PostMapping("/criarnovoproduto")
 	public String criarNovoProduto(Produtos produtos, @RequestParam MultipartFile file) {
 		try {
@@ -102,5 +120,10 @@ public class CriacaoController {
 		return "redirect:/gerenciamento";
 	}
 	
+	@GetMapping("/modificarPedidos")
+	public String modificarPedidos(Model model) {
+		model.addAttribute("listaPedidos", compradao.findAll());
+		return "modificarPedidos";
+	}
 	
 }

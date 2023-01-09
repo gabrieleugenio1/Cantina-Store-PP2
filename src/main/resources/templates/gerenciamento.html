@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/partials/pieces :: headBlock}">
-<title>Gerenciamento</title>
+<title>Gerenciamento de pedidos</title>
 </head>
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
@@ -14,42 +14,73 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<button class="botao-md text-white" data-bs-toggle="collapse"
-					data-bs-target="#criarTipo" role="button" aria-expanded="false"
-					aria-controls="multiCollapseExample1">Adicionar Novo Tipo</button>
+				<button class="botao-md text-white botao" data-bs-toggle="collapse" 
+					data-bs-target="#criarCategoria" role="button" aria-expanded="false"
+					aria-controls="multiCollapseExample1">Adicionar nova categoria</button>
+			</div>
+						<div class="col">
+				<button class="botao-md text-white botao" type="button"
+					data-bs-toggle="collapse" data-bs-target="#modificarCategoria"
+					aria-expanded="false" aria-controls="multiCollapseExample2">Modificar categoria</button>
 			</div>
 			<div class="col">
-				<button class="botao-md text-white" type="button"
+				<button class="botao-md text-white botao" type="button"
 					data-bs-toggle="collapse" data-bs-target="#cadastroProduto"
-					aria-expanded="false" aria-controls="multiCollapseExample2">Cadastrar
-					Produtos</button>
+					aria-expanded="false" aria-controls="multiCollapseExample2">Cadastrar novo
+					Produto</button>
 			</div>
 			<div class="col">
-				<button class="botao-md text-white" type="button"
-					data-bs-toggle="collapse" data-bs-target=".multi-collapse"
-					aria-expanded="false"
-					aria-controls="multiCollapseExample1 multiCollapseExample2">Mostrar
-					ambos</button>
+				<button class="botao-md text-white botao" type="button"
+					data-bs-toggle="collapse" data-bs-target="#cadastroProduto"
+					aria-expanded="false" aria-controls="multiCollapseExample2">Modificar produto</button>
 			</div>
+
 		</div>
 		<div class="row">
-			<div class="collapse multi-collapse" id="criarTipo">
+			<div class="collapse multi-collapse" id="criarCategoria">
 				<div class="card card-body">
 
 					<form th:action="@{/criarnovotipo}" method="post"
 						th:object="${categorias}">
 						<div class="container">
-							<h1>Realizar cadastro de um novo tipo</h1>
+							<h1>Realizar cadastro de uma nova categoria</h1>
 							<div>
 								<label for="exampleFormControlInput1" class="form-label">Nome
-									do tipo</label> <input type="text" name="categoria"
+									da categoria</label> <input type="text" name="categoria"
 									class="form-control" th:field="*{nome}"
-									placeholder="Nome do tipo" required>
+									placeholder="Nome da categoria" required>
 							</div>
 							<div class="break"></div>
 							<div class="d-grid gap-2">
 								<input class="font-input btn btn-success" type="submit"
-									value="Criar novo tipo">
+									value="Criar nova categoria">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+						<div class="collapse multi-collapse" id="modificarCategoria">
+				<div class="card card-body">
+
+					<form th:action="@{/modificarcategoria}" method="post">
+						<div class="container">
+							<h1>Realizar alteração de categoria</h1>
+							<div>
+							<label for="categoriaModificar" class="form-label">Qual categoria modificar?</label>
+							<select class="form-select form-select-sm" id="categoriaModificar"
+								aria-label=".form-select-sm example" name="antigonome">
+								<option th:each="tipo : ${tipoAlimento}" th:text="${tipo.nome}"
+									th:value="${tipo.id_categoria}"></option>
+							</select>
+								<label for="exampleFormControlInput1" class="form-label">Novo nome
+									da categoria</label> <input type="text" name="nome"
+									class="form-control"
+									placeholder="Nome da categoria" required>
+							</div>
+							<div class="break"></div>
+							<div class="d-grid gap-2">
+								<input class="font-input btn btn-success" type="submit"
+									value="Alterar categoria">
 							</div>
 						</div>
 					</form>
@@ -77,10 +108,10 @@
 								<span class="input-group-text">Estoque </span> <input type="tel"
 									class="form-control" th:field="*{estoque}">
 							</div>
-
-							<select class="form-select form-select-sm"
+							<label for="categoria" class="form-label">Categoria
+									do produto</label>
+							<select class="form-select form-select-sm" id="categoria"
 								aria-label=".form-select-sm example" th:field="*{categorias}">
-								<option th:value="''">Tipo do Produto</option>
 								<option th:each="tipo : ${tipoAlimento}" th:text="${tipo.nome}"
 									th:value="${tipo.id_categoria}"></option>
 							</select>
@@ -107,8 +138,10 @@
 		</div>
 	</main>
 
-	<footer class="text-center fixed-bottom" style="z-index: -1;">
-		<div th:replace="~{/partials/pieces :: footer}"></div>
+
+	<footer style="position:absolute;left:0;right:0;bottom:0;"  >
+		<div th:replace="~{/partials/pieces :: footer}">
+		</div>
 	</footer>
 </body>
 </html>

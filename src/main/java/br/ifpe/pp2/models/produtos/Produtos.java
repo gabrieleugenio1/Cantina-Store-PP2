@@ -1,13 +1,12 @@
 package br.ifpe.pp2.models.produtos;
 
-import jakarta.persistence.Id; 
-import br.ifpe.pp2.models.produtospedido.ProdutosPedido;
+import jakarta.persistence.Id;  
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-
+ 
 @Entity
 public class Produtos {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
@@ -20,8 +19,7 @@ public class Produtos {
 	private byte[] imagem;
 	@ManyToOne
 	private Categorias categorias;
-	@ManyToOne
-	private ProdutosPedido carrinho;
+
 	public Long getId_produto() {
 		return id_produto;
 	}
@@ -63,12 +61,6 @@ public class Produtos {
 	}
 	public void setCategorias(Categorias categorias) {
 		this.categorias = categorias;
-	}
-	public ProdutosPedido getCarrinho() {
-		return carrinho;
-	}
-	public void setCarrinho(ProdutosPedido carrinho) {
-		this.carrinho = carrinho;
 	}
 	
 
