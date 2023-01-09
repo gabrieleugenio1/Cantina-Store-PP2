@@ -8,24 +8,25 @@
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 	<main class="container">
-	<table class="table">
-					<thead>
-					<tr>
-						<th scope="col">Nome</th>
-						<th scope="col">E-mail</th>
-						<th scope="col">Celular</th>
-						<th scope="col">Admin</th>
-						<th scope="col">Editar conta</th>
-					</tr>
-					</thead>
-					<tr th:each="cont : ${listarUsuarios}">
-						<td th:text="${cont.nome}"></td>
-						<td th:text="${cont.email}"></td>
-						<td th:text="${cont.telefone}"></td>
-						<td th:text="${cont.admin}"></td>
-						<td ><a th:href="|/admin/editarUsuario?codigo=${cont.id}|">Alterar conta</a></td>
-					</tr>
-				</table>
+		<table class="table-responsive table-bordered border-success">
+			<thead>
+				<tr>
+					<th scope="col">Nome</th>
+					<th scope="col">E-mail</th>
+					<th scope="col">Celular</th>
+					<th scope="col">Admin</th>
+					<th scope="col">Editar conta</th>
+				</tr>
+			</thead>
+			<tr th:each="cont : ${listarUsuarios}">
+				<td th:text="${cont.nome}"></td>
+				<td th:text="${cont.email}"></td>
+				<td th:text="${cont.telefone}"></td>
+				<td th:text="${cont.admin}"></td>
+				<td><a th:href="|/admin/editarUsuario?codigo=${cont.id}|">Alterar
+						conta</a></td>
+			</tr>
+		</table>
 	</main>
 	<footer th:replace="~{/partials/pieces :: footer}"></footer>
 </body>

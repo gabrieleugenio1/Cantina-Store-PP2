@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
-
 <head th:replace="~{/partials/pieces :: headBlock}">
 <title>Minha conta</title>
 </head>
@@ -9,68 +7,64 @@
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 	<main class="container">
-		<div th:if="${sucess}"
-			style="position: absolute; top: 59px; z-index: 1;">
+		<div th:if="${sucess}" class="alerta" style="z-index: -1">
 			<div class="alert alert-success" role="alert">
 				<p th:utext="${sucess}"></p>
 			</div>
 		</div>
 		<section>
-			<div>
+			<div style="margin-top: 70px;">
 				<div class="container">
 					<h4>Editar dados da conta</h4>
 				</div>
 				<div>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Nome: </span><span
+							<span class="font-input">Nome: </span><span
 								th:utext="${session.usuarioLogado.getNome()}"></span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarNome">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao font-input text-white">Editar</button>
 						</div>
 					</div>
-					<br>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Email: </span><span
+							<span class="font-input">Email: </span><span
 								th:utext="${session.usuarioLogado.getEmail()}">Email</span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarEmail">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao font-input text-white">Editar</button>
 						</div>
 					</div>
-					<br>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Número: </span><span
+							<span class="font-input">Número: </span><span
 								th:utext="${session.usuarioLogado.getTelefone()}">Número</span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarNumero">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao text-white">Editar</button>
 						</div>
 					</div>
-					<br>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Senha: </span>
+							<span class="font-input">Senha: </span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarSenha">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao text-white">Editar</button>
 						</div>
 					</div>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Apagar conta: </span>
-							<form th:action="@{/removerConta}" th:object="${usuarios}"
-								method="post">
-								<input type="submit" class="delete"
-									onclick="return confirm('Você tem certeza que quer deletar sua conta?');"
-									value="Apagar conta" />
-							</form>
+							<span class="font-input">Apagar conta: </span>
 						</div>
-
+						<form th:action="@{/removerConta}" th:object="${usuarios}"
+							method="post">
+							<button type="submit"
+								class="botao danger btn-lg text-white"
+								onclick="return confirm('Você tem certeza que quer deletar sua conta?');">Excluir</button>
+						</form>
 					</div>
+
 				</div>
 			</div>
 		</section>
@@ -199,7 +193,9 @@
 			</div>
 		</div>
 	</main>
-	<footer th:replace="~{/partials/pieces :: footer}"></footer>
+	<footer class="text-center fixed-bottom" style="z-index: -1;">
+		<div th:replace="~{/partials/pieces :: footer}"></div>
+	</footer>
 </body>
 
 </html>

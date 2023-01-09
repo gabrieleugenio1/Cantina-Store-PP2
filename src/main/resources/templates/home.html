@@ -6,18 +6,14 @@
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
-	<main class="container">	
-		<div th:if="${session.usuarioLogado}">
-			<p th:utext="${session.usuarioLogado.getNome()}"></p>
-		</div>
+	<main class="container">
 		<div class="container-left">
-		<nav class="nav" >
-			<div class="nav-scroller bg-body"th:each="tipo :${mostrarTipos}">
+			<nav class="nav">
+				<div class="nav-scroller bg-body" th:each="tipo :${mostrarTipos}">
 					<a class="nav-link text-dark" th:href="@{'#'+${tipo.nome}}"
 						th:text="${tipo.nome}"></a>
-
-			</div>
-		</nav>
+				</div>
+			</nav>
 		</div>
 		<section class="container-center">
 			<form>
@@ -36,7 +32,8 @@
 								<div class="nome-prod" th:text="${prod.nome}"></div>
 								<div class="descricao-prod" th:text="${prod.descricao}"></div>
 								<div class="preco-prod">
-									<span style="font-weight: bold;">R$</span><span th:text="${#strings.replace(prod.preco,'.',',')}"></span>
+									<span style="font-weight: bold;">R$</span><span
+										th:text="${#strings.replace(prod.preco,'.',',')}"></span>
 								</div>
 							</div>
 							<div>
@@ -61,30 +58,32 @@
 		<br />
 		<!-- Modal produtos-->
 		<div>
-				<div th:each="prod: ${listarProdutos}" class="modal fade"
-					th:id="@{'a' + ${prod.id_produto}}" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden=true>
-					<div class="modal-dialog">
-						<div class="modal-content">
+			<div th:each="prod: ${listarProdutos}" class="modal fade"
+				th:id="@{'a' + ${prod.id_produto}}" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden=true>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form th:action="@{/addCarrinho}" method="post">
 							<div class="container">
 								<h4>Descrição</h4>
 								<div th:text="${prod.descricao}"></div>
 							</div>
 							<div class="modal-header">
 								<h1 class="modal-title fs-5" th:text="${prod.nome}"></h1>
-								<div style="font-weight: bold; font-size: 1.3rem; color: #008000"> 
-								
-								<span> &nbsp; R$</span><span th:text="${#strings.replace(prod.preco,'.',',')}"></span>
+								<div
+									style="font-weight: bold; font-size: 1.3rem; color: #008000">
+									<span> &nbsp; R$</span><span
+										th:text="${#strings.replace(prod.preco,'','')}"></span>
 								</div>
-								
+
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
 							<div class="modal-header rounded mx-auto d-block">
-							
+
 								<div th:if="${prod.imagem.length>2}">
-									<img th:src="|/foto/${prod.id_produto}|" class="img-fluid" style="height:20rem;"
-										th:alt="${prod.nome}" />
+									<img th:src="|/foto/${prod.id_produto}|" class="img-fluid"
+										style="height: 20rem;" th:alt="${prod.nome}" />
 
 								</div>
 								<div th:if="${prod.imagem.length==0}">
@@ -94,15 +93,6 @@
 
 								</div>
 							</div>
-
-
-
-
-
-
-
-
-
 							<div class="modal-body">
 								<div class="row align-items-start">
 									<div class="col">
@@ -178,9 +168,10 @@
 										Adicionar</button>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
+			</div>
 		</div>
 	</main>
 	<footer th:replace="~{/partials/pieces :: footer}"></footer>

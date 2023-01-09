@@ -7,9 +7,8 @@
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
-	<main class="container">
-		<div th:if="${sucess}"
-			style="position: absolute; top: 59px; z-index: 1;">
+	<main class="container" style="margin-top: 50px">
+		<div th:if="${sucess}" class="alerta">
 			<div class="alert alert-success" role="alert">
 				<p th:utext="${sucess}"></p>
 			</div>
@@ -18,71 +17,65 @@
 			<div>
 				<div class="container">
 					<h4>Editar dados da conta</h4>
-				</div>
-				<div>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Nome: </span><span
+							<span class="font-input">Nome: </span><span
 								th:text="${usuarioAlterar.getNome()}"></span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarNome">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao text-white">Editar</button>
 						</div>
 					</div>
-					<br>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Email: </span><span
+							<span class="font-input">Email: </span><span
 								th:text="${usuarioAlterar.getEmail()}">Email</span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarEmail">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao text-white">Editar</button>
 						</div>
 					</div>
-					<br>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Número: </span><span
+							<span class="font-input">Número: </span><span
 								th:text="${usuarioAlterar.getTelefone()}">Número</span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarNumero">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao text-white">Editar</button>
 						</div>
 					</div>
-					<br>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Senha: </span>
+							<span class="font-input">Senha: </span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarSenha">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao text-white">Editar</button>
 						</div>
 					</div>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Admin: </span> <span
+							<span class="font-input">Admin: </span> <span
 								th:text="${usuarioAlterar.getAdmin()}"></span>
 						</div>
 						<div data-bs-toggle="modal" data-bs-target="#editarTipo">
-							<button type="button" class="botao">Editar</button>
+							<button type="button" class="botao text-white">Editar</button>
 						</div>
 					</div>
 					<div class="div-edicao">
 						<div>
-							<span class="fw-bold">Apagar conta: </span>
-							<form th:action="@{/admin/removerConta}" th:object="${usuarios}"
-								method="post">
-								<input type="submit" class="delete"
-									onclick="return confirm('Você tem certeza que quer deletar a conta?');"
-									value="Apagar conta" />
-							</form>
+							<span class="font-input">Apagar conta: </span>
 						</div>
-
+						<form th:action="@{/admin/removerConta}" th:object="${usuarios}"
+							method="post">
+							<button type="submit"
+								class="botao danger text-white"
+								onclick="return confirm('Você tem certeza que quer deletar a conta?');">
+								Excluir</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</section>
-
 		<!-- Modal Nome -->
 		<div class="modal fade" id="editarNome" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,7 +88,8 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/admin/alterardadosusuario" method="post">
+						<form class="row" action="/admin/alterardadosusuario"
+							method="post">
 							<div>Fazer alteração do nome.</div>
 							<div class="break"></div>
 							<div>
@@ -122,9 +116,10 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/admin/alterardadosusuario" method="post">
-						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
-						
+						<form class="row" action="/admin/alterardadosusuario"
+							method="post">
+							<input type="hidden" name="codigo"
+								th:value="*{usuarioAlterar.getId()}">
 							<div>Digite o novo endereço de email que você deseja
 								associar à sua conta. Enviaremos um código de verificação para
 								esse endereço.</div>
@@ -141,7 +136,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Modal Número-->
 		<div class="modal fade" id="editarNumero" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,9 +148,10 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/admin/alterardadosusuario" method="post">
-						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
-						
+						<form class="row" action="/admin/alterardadosusuario"
+							method="post">
+							<input type="hidden" name="codigo"
+								th:value="*{usuarioAlterar.getId()}">
 							<div>
 								<select class="form-select form-select-sm" name="" id="">
 									<option value="">DDD</option>
@@ -176,7 +171,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!--Modal tipo -->
 		<div class="modal fade" id="editarTipo" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,20 +183,19 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body ">
-						<form class="row" action="/admin/alterardadosusuario" method="post">
-						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
-						
+						<form class="row" action="/admin/alterardadosusuario"
+							method="post">
+							<input type="hidden" name="codigo"
+								th:value="*{usuarioAlterar.getId()}">
 							<div>Fazer alteração do tipo da conta.</div>
 							<div class="break"></div>
 							<div>
-								<select class="form-select form-select-sm" name="tipodaconta" 
+								<select class="form-select form-select-sm" name="tipodaconta"
 									aria-label=".form-select-sm example">
-									<option  value="false"
-										selected>Comum</option>
+									<option value="false" selected>Comum</option>
 									<option value="true">Admin</option>
 
 								</select>
-
 							</div>
 							<button type="submit" class="btn btn-primary">Salvar
 								alteração</button>
@@ -225,8 +218,8 @@
 					</div>
 					<div class="modal-body ">
 						<form class="row">
-						<input type="hidden" name="codigo" th:value ="*{usuarioAlterar.getId()}">
-						
+							<input type="hidden" name="codigo"
+								th:value="*{usuarioAlterar.getId()}">
 							<div>
 								<div>
 									<input type="password" class="form-control" id=""
@@ -238,7 +231,6 @@
 										placeholder="Senha nova">
 								</div>
 							</div>
-
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -249,7 +241,9 @@
 			</div>
 		</div>
 	</main>
-	<footer th:replace="~{/partials/pieces :: footer}"></footer>
+	<footer class="text-center fixed-bottom" style="z-index: -1;">
+		<div th:replace="~{/partials/pieces :: footer}"></div>
+	</footer>
 </body>
 
 </html>
