@@ -1,5 +1,6 @@
 body {
 	padding-top: 64px;
+	height:100vh;
 }
 
 .bd-placeholder-img {
@@ -9,7 +10,9 @@ body {
 	-moz-user-select: none;
 	user-select: none;
 }
-
+.main{
+	height: calc(100% - 50px);
+}
 @media ( min-width : 768px) {
 	.bd-placeholder-img-lg {
 		font-size: 3.5rem;

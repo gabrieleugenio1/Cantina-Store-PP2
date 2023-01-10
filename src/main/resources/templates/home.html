@@ -6,11 +6,11 @@
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
-	<main class="container">
+	<main class="container main">
 		<div class="container-left">
 			<nav class="nav">
 				<div class="nav-scroller bg-body" th:each="tipo :${mostrarTipos}">
-					<a class="nav-link text-dark" th:href="@{'#'+${tipo.nome}}"
+					<a class="nav-link text-dark" th:href="@{'#a'+${tipo.id_categoria}}"
 						th:text="${tipo.nome}"></a>
 				</div>
 			</nav>
@@ -22,7 +22,7 @@
 			</form>
 			<br />
 			<div th:each="tipo :${mostrarTipos}">
-				<h1 th:id="${tipo.nome}" th:text="${tipo.nome}"></h1>
+				<h1 th:id="@{${tipo.nome}+' a'+${tipo.id_categoria}}" th:text="${tipo.nome}"></h1>
 				<div th:each="prod: ${listarProdutos}">
 
 					<div class="div-produto" th:if="${prod.categorias==tipo}">

@@ -6,7 +6,7 @@
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
-	<main class="container">
+	<main class="container main">
 		<div th:if="${sucess}" class="alerta" style="z-index: -1">
 			<div class="alert alert-success" role="alert">
 				<p th:utext="${sucess}"></p>

@@ -1,6 +1,6 @@
 package br.ifpe.pp2.Controller;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import br.ifpe.pp2.models.compra.CompraDAO;
+
+import br.ifpe.pp2.models.compra.Pedidos;
+import br.ifpe.pp2.models.compra.PedidosDAO;
 import br.ifpe.pp2.models.produtos.Categorias;
 import br.ifpe.pp2.models.produtos.CategoriasDAO;
 import br.ifpe.pp2.models.produtos.Produtos;
@@ -27,7 +29,7 @@ public class CriacaoController {
 	@Autowired
 	private CategoriasDAO categoriadao;
 	@Autowired
-	private CompraDAO compradao;
+	private PedidosDAO pedidosdao;
 	
 	
 	@GetMapping("/cadastro")
@@ -98,7 +100,7 @@ public class CriacaoController {
 		Categorias alterarNome = categoriadao.findById(antigonome).orElse(null);
 		System.out.println( categoriadao.findById(antigonome));
 
-		if(nome != null && categoriadao.findById(antigonome) == null) {	
+		if(nome != null) {	
 			alterarNome.setNome(nome);	
 			System.out.println(alterarNome.getNome());
 			return "redirect:/gerenciamento";
@@ -122,8 +124,13 @@ public class CriacaoController {
 	
 	@GetMapping("/modificarPedidos")
 	public String modificarPedidos(Model model) {
-		model.addAttribute("listaPedidos", compradao.findAll());
+		model.addAttribute("MostrarPedidos", pedidosdao.findAll());
 		return "modificarPedidos";
+	}
+	
+	@GetMapping("/admin/editarPedido")
+	public String editarPedido(Pedidos pedidos,Long codigo) {
+		return "";
 	}
 	
 }
