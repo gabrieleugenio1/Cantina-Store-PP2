@@ -26,8 +26,36 @@
 							class="font-input text-white">Bem-vindo </span><span
 							th:utext="@{${session.usuarioLogado.getNome()} + '!'}"
 							class="fst-italic font-input text-white"></span>
-						</span> <a href="/carrinho" class="navbar-toggler"><span
-							class="bi bi-cart"></span></a>
+						
+						
+						</span> <a href="#offcanvasRight" class="navbar-toggler"
+						data-bs-toggle="offcanvas" aria-controls="offcanvasRight">
+						<span class="bi bi-cart"></span></a>
+							
+							 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      						<div class="offcanvas-header">
+       						<h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+        					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+     						 </div>
+     						 <div class="offcanvas-body">
+       							<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+     						 </div>
+   							 </div>
+							
+							
 						<div class="offcanvas offcanvas-start bg-success" tabindex="-1"
 							id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel"
 							style="width: 300px">
