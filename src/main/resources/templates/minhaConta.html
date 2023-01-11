@@ -6,7 +6,7 @@
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
-	<main class="container main">
+	<main class="container">
 		<div th:if="${sucess}" class="alerta" style="z-index: -1">
 			<div class="alert alert-success" role="alert">
 				<p th:utext="${sucess}"></p>
@@ -59,8 +59,7 @@
 						</div>
 						<form th:action="@{/removerConta}" th:object="${usuarios}"
 							method="post">
-							<button type="submit"
-								class="botao danger btn-lg text-white"
+							<button type="submit" class="botao danger btn-lg text-white"
 								onclick="return confirm('Você tem certeza que quer deletar sua conta?');">Excluir</button>
 						</form>
 					</div>
@@ -88,8 +87,11 @@
 								<input type="text" class="form-control" id="" name="nome"
 									placeholder="Nome">
 							</div>
-							<button type="submit" class="btn btn-primary">Salvar
-								alteração</button>
+							<div class="break"></div>
+							<div class="d-grid gap-2">
+								<button type="submit" class="font-input btn btn-success">Salvar
+									alteração</button>
+							</div>
 						</form>
 					</div>
 					<div class="modal-footer"></div>
@@ -117,8 +119,10 @@
 								<input type="email" class="form-control" id="" name="email"
 									placeholder="Novo endereço de email">
 							</div>
-							<button type="submit" class="btn btn-primary"
-								data-bs-toggle="modal" data-bs-target="#codigoEmail">Continuar</button>
+							<div class="break"></div>
+							<div class="d-grid gap-2">
+								<button type="submit" class="font-input btn btn-success">Continuar</button>
+							</div>
 						</form>
 					</div>
 					<div class="modal-footer"></div>
@@ -150,8 +154,11 @@
 									class="form-control" id="" name="numero"
 									placeholder="Número de celular">
 							</div>
-							<button type="submit" class="btn btn-primary">Salvar
-								Alterações</button>
+							<div class="break"></div>
+							<div class="d-grid gap-2">
+								<button type="submit" class="font-input btn btn-success">Salvar
+									alteração</button>
+							</div>
 						</form>
 					</div>
 					<div class="modal-footer"></div>
@@ -182,18 +189,18 @@
 										placeholder="Senha nova">
 								</div>
 							</div>
-
+							<div class="break"></div>
+							<div class="d-grid gap-2">
+								<button type="submit" class="font-input btn btn-success">Salvar
+									alteração</button>
+							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">Salvar
-							Alterações</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
-	<footer class="text-center fixed-bottom" style="z-index: -1;">
+	<footer class="text-center">
 		<div th:replace="~{/partials/pieces :: footer}"></div>
 	</footer>
 </body>

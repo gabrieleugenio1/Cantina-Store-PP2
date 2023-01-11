@@ -8,7 +8,7 @@
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 	<main class="container main">
-		<table class="table-responsive table-bordered border-success">
+		<table class="table table-bordered border-success">
 			<thead>
 				<tr>
 					<th scope="col">Comprado por</th>
@@ -31,9 +31,8 @@
 			</tr>
 		</table>
 	</main>
-	<footer style="position:absolute; right:0; left:0;bottom:0;">
-	<div  th:replace="~{/partials/pieces :: footer}">
-	</div>
+	<footer class="text-center">
+		<div th:replace="~{/partials/pieces :: footer}"></div>
 	</footer>
 </body>
 

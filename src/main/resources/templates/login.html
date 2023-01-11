@@ -7,7 +7,7 @@
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 
-	<main class="container main">
+	<main class="container">
 		<div th:if="${mensagemErro}" class="alerta">
 			<div class="alert alert-danger" role="alert">
 				<p th:utext="${mensagemErro}"></p>
@@ -38,7 +38,7 @@
 			</div>
 		</form>
 	</main>
-	<footer class="text-center fixed-bottom" style="z-index: -1;">
+	<footer class="text-center">
 		<div th:replace="~{/partials/pieces :: footer}"></div>
 	</footer>
 </body>

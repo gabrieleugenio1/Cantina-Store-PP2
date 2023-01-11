@@ -7,30 +7,31 @@
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
-	<main class="container main">
-		<table class="table-responsive table-bordered border-success">
+	<main class="container">
+		<table class="table table-bordered border-success">
 			<thead>
 				<tr>
 					<th scope="col">Nome</th>
 					<th scope="col">E-mail</th>
 					<th scope="col">Celular</th>
 					<th scope="col">Admin</th>
-					<th scope="col">Editar conta</th>
+					<th scope="col">Compras</th>
+					<th scope="col">Editar conta</th>	
 				</tr>
 			</thead>
 			<tr th:each="cont : ${listarUsuarios}">
 				<td th:text="${cont.nome}"></td>
 				<td th:text="${cont.email}"></td>
 				<td th:text="${cont.telefone}"></td>
+				<td>Acessar Compras</td>
 				<td th:text="${cont.admin}"></td>
-				<td><a th:href="|/admin/editarUsuario?codigo=${cont.id}|">Alterar
+				<td><a class="font-input" th:href="|/admin/editarUsuario?codigo=${cont.id}|">Alterar
 						conta</a></td>
 			</tr>
 		</table>
 	</main>
-	<footer style="position:absolute; right:0; left:0;bottom:0;">
-	<div  th:replace="~{/partials/pieces :: footer}">
-	</div>
+	<footer class="text-center">
+		<div th:replace="~{/partials/pieces :: footer}"></div>
 	</footer>
 </body>
 

@@ -63,6 +63,11 @@
 										class="nav-item"><a class="nav-link text-white"
 										href="/gerenciamento"> <span class="bi bi-clipboard2-data"></span> Gerenciamento
 									</a></li>
+									<li th:if="${session.tipo=='admin'}" class="nav-item">
+										<a class="nav-link text-white" href="/admin/index"> <span
+											class="bi bi-person-fill-gear"> Dados dos Usuarios</span>
+									</a>
+									</li>
 									<li th:if="${session.tipo=='admin' || session.tipo==true}" class="nav-item">
 										<a class="nav-link text-white" href="/modificarPedidos"> <span
 											class="bi bi-person-fill-gear"> Modificar pedidos</span>

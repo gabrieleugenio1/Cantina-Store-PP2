@@ -93,57 +93,6 @@
 								</div>
 							</div>
 							<div class="modal-body">
-								<div class="row align-items-start">
-									<div class="col">
-										<h5>Sachê de ketchup</h5>
-									</div>
-									<div class="col">
-										<button type="button" class="input-qtd bg-danger"
-											id="decrementar1" onclick="mudar1(this)">
-											<strong>-</strong>
-										</button>
-										<input class="input-compras" id="input-add1" type="number"
-											min="1" step="1" value="1" />
-										<button id="incrementar-add1" class="input-qtd bg-success"
-											onclick="mudar1(this)">
-											<strong>+</strong>
-										</button>
-									</div>
-								</div>
-								<div class="row align-items-start">
-									<div class="col">
-										<h5>Sachê de maionese</h5>
-									</div>
-									<div class="col">
-										<button type="button" class="input-qtd bg-danger"
-											id="decrementar2" onclick="mudar2(this)">
-											<strong>-</strong>
-										</button>
-										<input class="input-compras" id="input-add2" type="number"
-											min="1" step="1" value="1" />
-										<button id="incrementar-add2" class="input-qtd bg-success"
-											onclick="mudar2(this)">
-											<strong>+</strong>
-										</button>
-									</div>
-								</div>
-								<div class="row align-items-start">
-									<div class="col">
-										<h5>Sachê de mostarda</h5>
-									</div>
-									<div class="col">
-										<button type="button" class="input-qtd bg-danger"
-											id="decrementar3" onclick="mudar3(this)">
-											<strong>-</strong>
-										</button>
-										<input class="input-compras" id="input-add3" type="number"
-											min="1" step="1" value="1" />
-										<button id="incrementar-add3" class="input-qtd bg-success"
-											onclick="mudar3(this)">
-											<strong>+</strong>
-										</button>
-									</div>
-								</div>
 								<div>
 									<label for="message-text" class="col-form-label">Observações:</label>
 									<textarea class="form-control" id="message-text"></textarea>
@@ -172,7 +121,8 @@
 			</div>
 		</div>
 	</main>
-	<footer th:replace="~{/partials/pieces :: footer}">
+	<footer class="text-center">
+		<div th:replace="~{/partials/pieces :: footer}"></div>
 	</footer>
 </body>
 </html>
