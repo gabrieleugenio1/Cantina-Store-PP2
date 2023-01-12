@@ -30,7 +30,8 @@ public class CardapioController {
 	@GetMapping("/")
 	public String produtos( Model model) {
 		model.addAttribute("listarProdutos", this.produtosdao.findAll());
-		model.addAttribute("mostrarTipos", this.categoriadao.findAll());		
+		model.addAttribute("mostrarTipos", this.categoriadao.findAll());
+		model.addAttribute("addcarrinho", this.produtosdao.findAll());
 		return "home";
 	}
 	
