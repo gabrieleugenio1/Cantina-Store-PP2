@@ -107,7 +107,9 @@ main {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-
+.cursor{
+	cursor: pointer;
+}
 .info-prod {
 	text-align: left;
 	font: bold 18px Arial;

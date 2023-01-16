@@ -56,7 +56,7 @@
 							</div>
 						</form>
 					</td>
-					<td th:text="${cont.tipopagamento}"></td>
+					<td th:text="${cont.tipopagamento.getNome()}"></td>
 					<td><a th:href="|/editarPedido?codigo=${cont.codigo}|">Editar
 							pedido</a></td>
 					<td

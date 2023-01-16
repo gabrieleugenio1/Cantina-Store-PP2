@@ -22,11 +22,10 @@
 			<div th:each="tipo :${mostrarTipos}">
 				<h1 th:id="@{'a'+${tipo.id_categoria}}" th:text="${tipo.nome}"></h1>
 				<div class="div-produto">
-
 					<div th:each="prod: ${listarProdutos}">
 
 						<div th:if="${prod.categorias==tipo}">
-							<div class="produto" data-bs-toggle="modal"
+							<div class="produto cursor" data-bs-toggle="modal"
 								th:data-bs-target="@{'#b' +${prod.id_produto}}">
 								<div class="info-prod">
 									<div class="nome-prod" th:text="${prod.nome}"></div>
