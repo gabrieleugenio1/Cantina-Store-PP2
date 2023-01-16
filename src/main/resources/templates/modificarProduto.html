@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/partials/pieces :: headBlock}">
-<title>Modificar Protudos</title>
 </head>
+<head><title>Modificar Protudos</title></head>
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
 	<main>
 		<form th:action="@{/modificarProduto}" method="post"
 			enctype="multipart/form-data" th:object="${produtos}">
 			<div class="container">
-				<h1>Realizar cadastro de produtos</h1>
+				<h1>Realizar alteração de produtos</h1>
 				<input type="hidden" th:field="*{id_produto}">
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label font-input">Nome
@@ -46,7 +46,7 @@
 				</div>
 				<div class="d-grid gap-2">
 					<button class="font-input btn btn-success" type="submit">
-						Criar novo produto</button>
+						Alterar produto</button>
 				</div>
 			</div>
 		</form>

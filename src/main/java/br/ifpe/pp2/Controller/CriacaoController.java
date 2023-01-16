@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.ifpe.pp2.models.compra.Pedidos;
-import br.ifpe.pp2.models.compra.PedidosDAO;
+import br.ifpe.pp2.models.compra.Compra;
+import br.ifpe.pp2.models.compra.CompraDAO;
 import br.ifpe.pp2.models.produtos.Categorias;
 import br.ifpe.pp2.models.produtos.CategoriasDAO;
-import br.ifpe.pp2.models.produtos.Produtos;
-import br.ifpe.pp2.models.produtos.ProdutosDAO;
+import br.ifpe.pp2.models.produtos.Produto;
+import br.ifpe.pp2.models.produtos.ProdutoDAO;
 import br.ifpe.pp2.models.usuarios.Usuarios;
 import br.ifpe.pp2.models.usuarios.UsuariosDAO;
+import br.ifpe.pp2.servicos.UsuarioServico;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -28,11 +29,11 @@ public class CriacaoController {
 	@Autowired
 	private UsuariosDAO usuariosdao;
 	@Autowired
-	private ProdutosDAO produtosdao;
+	private ProdutoDAO produtosdao;
 	@Autowired
 	private CategoriasDAO categoriadao;
 	@Autowired
-	private PedidosDAO pedidosdao;
+	private CompraDAO compradao;
 
 	@GetMapping("/cadastro")
 	public String cadastro(Usuarios usuario) {
@@ -40,12 +41,13 @@ public class CriacaoController {
 	}
 
 	@PostMapping("/salvar/novousuario")
-	public String salvarUsuario(String email, Usuarios usuarios, RedirectAttributes redirect) {
+	public String salvarUsuario(String senha,String email, Usuarios usuarios, RedirectAttributes redirect) {
 
 		if (email != null && usuariosdao.findByEmail(email) == null) {
+			usuarios.setSenha(UsuarioServico.md5(senha));
 			usuariosdao.save(usuarios);
 			redirect.addFlashAttribute("sucess", "Conta criada com sucesso.");
-			return "redirect:/cadastro";
+			return "redirect:/login";
 
 		} else {
 			redirect.addFlashAttribute("falha", "Falha ao criar conta, email existente.");
@@ -53,9 +55,28 @@ public class CriacaoController {
 
 		}
 	}
+	
+	@PostMapping("/login/usuario")
+	public String loginUsuario(String email,String senha, RedirectAttributes ra, HttpSession session) {
+		Usuarios usuario = this.usuariosdao.findByEmailAndSenha(email, UsuarioServico.md5(senha));
+		if (usuario != null) {
+			if(session.getAttribute("tipo") == "admin") {
+				session.invalidate();
+			}
+			session.setAttribute("usuarioLogado", usuario);
+			session.setAttribute("id", usuario.getId());
+			session.setAttribute("tipo", usuario.getAdmin());
+			System.out.println(usuario.getId());			
+			return "redirect:/";
+		} else {
+			ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos");
+			return "redirect:/login";
+		} 
+
+	}
 
 	@PostMapping("/alterardados")
-	public String alterarDados(Usuarios usuarios, String nome, Boolean tipo, String email, RedirectAttributes redirect,
+	public String alterarDados(Usuarios usuarios, String senha, String nome, Boolean tipo, String email, RedirectAttributes redirect,
 			String numero, HttpSession session) {
 		String id = session.getAttribute("id").toString();
 		long codigo = Long.parseLong(id);
@@ -69,10 +90,16 @@ public class CriacaoController {
 		if (email != null && usuariosdao.findByEmail(email) == null) {
 			encontrado.setEmail(email);
 			redirect.addFlashAttribute("sucess", "Email alterado com sucesso.");
+		}else {
+			redirect.addFlashAttribute("falha", "Email existente ou nulo.");
 		}
 		if (numero != null) {
 			encontrado.setTelefone(numero);
 			redirect.addFlashAttribute("sucess", "Número alterado com sucesso.");
+		}
+		if (senha != null) {
+			encontrado.setSenha(UsuarioServico.md5(senha));
+			redirect.addFlashAttribute("sucess", "Senha alterada com sucesso.");
 		}
 		usuariosdao.save(encontrado);
 		session.setAttribute("usuarioLogado", encontrado);
@@ -82,7 +109,7 @@ public class CriacaoController {
 	}
 
 	@GetMapping("/gerenciamento")
-	public String gerenciamento(Categorias categorias, Produtos produtos, Model model) {
+	public String gerenciamento(Categorias categorias, Produto produtos, Model model) {
 		model.addAttribute("tipoAlimento", this.categoriadao.findAll());
 		model.addAttribute("todosProdutos", produtosdao.findAll());
 		return "gerenciamento";
@@ -98,64 +125,61 @@ public class CriacaoController {
 			return "redirect:/gerenciamento";
 		}
 	}
+
 	@PostMapping("/modificarcategoria")
-	public String modificarCategoria(String nome, Integer antigonome,RedirectAttributes redirect) {
+	public String modificarCategoria(String nome, Integer antigonome, RedirectAttributes redirect) {
 		Categorias alterarNome = categoriadao.findById(antigonome).orElse(null);
-		if(nome != null) {	
+		if (nome != null) {
 			alterarNome.setNome(nome);
 			categoriadao.save(alterarNome);
 			return "redirect:/gerenciamento";
-		}else {
+		} else {
 			redirect.addFlashAttribute("mensagem", "Categoria já existe ou nula");
 			return "redirect:/gerenciamento";
 		}
 	}
 
 	@PostMapping("/criarnovoproduto")
-	public String criarNovoProduto(Produtos produtos, @RequestParam MultipartFile file) {
+	public String criarNovoProduto(Produto produtos, @RequestParam MultipartFile file) {
 		try {
 			produtos.setImagem(file.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		this.produtosdao.save(produtos);
+		System.out.println(produtos);
 		return "redirect:/gerenciamento";
 	}
-	
+
 	@PostMapping("/modificarProduto")
-	public String modificarProduto(Produtos produtos, @RequestParam MultipartFile file) {
+	public String modificarProduto(Produto produtos, @RequestParam MultipartFile file) {
 		try {
 			produtos.setImagem(file.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		produtosdao.save(produtos);
-		return "modificarProduto";
+		return "redirect:/gerenciamento";
 	}
-	
+
 	@GetMapping("/modificarProduto")
 	public String modificarProduto(Long id, Model model) {
 		model.addAttribute("tipoAlimento", this.categoriadao.findAll());
-		Produtos produto = this.produtosdao.findById(id).orElse(null);
+		Produto produto = this.produtosdao.findById(id).orElse(null);
 		model.addAttribute("produtos", produto);
 		produtosdao.save(produto);
 		return "modificarProduto";
 	}
 
 	@GetMapping("/removerProduto")
-	public String removerContato(Long id) {
+	public String removerProduto(Long id) {
 		produtosdao.deleteById(id);
 		return "redirect:/gerenciamento";
 	}
-	@GetMapping("/modificarPedidos")
-	public String modificarPedidos(Model model) {
-		model.addAttribute("MostrarPedidos", pedidosdao.findAll());
-		return "modificarPedidos";
-	}
-
-	@GetMapping("/admin/editarPedido")
-	public String editarPedido(Pedidos pedidos, Long codigo) {
-		return "";
+	
+	@GetMapping("/projeto")
+	public String projeto() {
+		return "admin/projeto";
 	}
 
 }
