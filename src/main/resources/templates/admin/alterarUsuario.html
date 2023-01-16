@@ -2,8 +2,8 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{/partials/pieces :: headBlock}">
-<title>Alterar usuario</title>
 </head>
+<head><title>Alterar usuario</title></head>
 
 <body>
 	<header th:replace="~{/partials/pieces :: navbar}"></header>
@@ -65,7 +65,7 @@
 						<div>
 							<span class="font-input">Apagar conta: </span>
 						</div>
-						<form th:action="@{/admin/removerConta}" th:object="${usuarios}"
+						<form action="/removerConta" th:object="${usuarios}"
 							method="post">
 							<button type="submit" class="botao danger text-white"
 								onclick="return confirm('Você tem certeza que quer deletar a conta?');">

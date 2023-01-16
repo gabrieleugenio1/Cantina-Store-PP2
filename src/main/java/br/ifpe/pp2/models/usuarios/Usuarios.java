@@ -14,7 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Lob;
 
 @Entity	
-
 public class Usuarios {
 	
 	 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +25,7 @@ public class Usuarios {
 	private String telefone;
 	 @Column(nullable = false)
 	private Boolean admin = false;
-	@Lob
-	private byte[] foto;
-	
+
 	@Column(nullable = false, updatable = false)
 	@CreationTimestamp
 	@DateTimeFormat(iso = ISO.DATE)
@@ -63,13 +60,6 @@ public class Usuarios {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public byte[] getFoto() {
-		return foto;
-	}
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
 	}
 	public LocalDate getCriacaoConta() {
 		return criacaoConta;
